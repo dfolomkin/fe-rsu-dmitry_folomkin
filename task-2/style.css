@@ -1,0 +1,119 @@
+body {
+    font-family: arial;
+    font-size: 10pt;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 0;
+}
+
+body.main-page {
+    margin: 0;
+}
+
+body.main-page > table {
+    width: 100%;
+}
+
+body.main-page iframe {
+    width: 100%;
+    height: 500px;
+    border: 0;
+}
+
+.main-menu {
+    background-color: beige;
+}
+
+.main-menu > .header {
+    padding: 10px;
+}
+
+.main-menu > .header > a {
+    color: #333;
+    text-decoration: none;
+}
+
+.main-menu > .header > a:hover {
+    text-decoration: none;
+    color: cadetblue;
+}
+
+.main-menu > .header > a > h1 {
+    font-size: 24pt;
+    margin: 0;
+    display: inline-block;
+}
+
+.main-menu > .menu-item {
+    width: 200px;
+    text-align: center;
+}
+
+.main-menu a {
+    font-size: 16pt;
+    text-decoration: none;
+    color: cadetblue;
+}
+
+.main-menu a:hover {
+    text-decoration: underline;
+}
+
+.slogan {
+    font-size: 16pt;
+    color: cadetblue;
+    text-align: right;
+}
+
+.footer > td {
+    padding: 10px;
+    background-color: beige;
+}
+
+body.sub-page {
+    margin: 0;
+}
+
+body.sub-page > table {
+    width: 100%;
+}
+
+body.sub-page > table td {
+    height: 100%;
+}
+
+body.sub-page iframe {
+    width: 100%;
+    height: 496px;
+    border: 0;
+}
+
+.sub-menu {
+    width: 200px;
+    background-color: beige;
+    vertical-align: top;
+}
+
+.sub-menu a {
+    font-size: 16pt;
+    text-decoration: none;
+    color: #333;
+}
+
+.sub-menu a:hover {
+    color: cadetblue;
+}
+
+.bordered {
+    border: 1px solid #333;
+}
+
+.bordered th, .bordered td {
+    border: 1px solid #333;
+    padding: 5px 10px;
+}
