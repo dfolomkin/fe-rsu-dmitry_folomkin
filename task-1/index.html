@@ -58,56 +58,153 @@
         </tr>
         <tr>
             <td rowspan="2"></td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-            <td>eleven</td>
-            <td colspan="9">Method</td>
-        </tr>
-        <tr>
             <td rowspan="4"></td>
-            <td>thirty</td>
-            <td>31</td>
-        </tr>
-        <tr>
             <td>27</td>
-            <td>31</td>
-            <td>33</td>
-            <td>34</td>
-            <td>35</td>
-            <td>36</td>
-        </tr>
-        <tr>
-            <td colspan="3">27</td>
-            <td>5.1</td>
-            <td>6.1</td>
-            <td>7</td>
-        </tr>
-        <tr>
-            <td colspan="5">27</td>
-            <td>23</td>
-        </tr>
-        <tr>
-            <td colspan="4">27</td>
-            <td>6.1</td>
-            <td>7.1</td>
-        </tr>
-        <tr>
-            <td colspan="5">27</td>
-            <td>7</td>
-        </tr>
-        <tr>
+            <td rowspan="3"></td>
+            <td rowspan="5"></td>
+            <td rowspan="4"></td>
+            <td rowspan="5"></td>
             <td></td>
-            <td>2.3</td>
-            <td>4</td>
-            <td>4.1</td>
-            <td>4.3</td>
-            <td>4.4</td>
+            <td rowspan="5"></td>
         </tr>
         <tr>
-            <td colspan="5">27</td>
+            <td>31</td>
+            <td>2.3</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>33</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>34</td>
+            <td>5.1</td>
+            <td>4.1</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>thirty</td>
+            <td>35</td>
+            <td>6.1</td>
+            <td>6.1</td>
+            <td>4.3</td>
+        </tr>
+        <tr>
+            <td>eleven</td>
+            <td>31</td>
             <td>36</td>
+            <td>7</td>
+            <td>23</td>
+            <td>7.1</td>
+            <td>7</td>
+            <td>4.4</td>
+            <td>36</td>
+        </tr>
+        <tr>
+            <td colspan="9">Method od displaying text or images before or after the given element's contents using the :before and :after pseudo-elements</td>
         </tr>
     </table>
+    
+    <hr>
+    
+    <form action="http://httpbin.org/post" method="post">
+        <fieldset>
+            <legend>Personal Data</legend>
+            
+            <label for="surname">Surname</label>
+            <input id="surname" type="text" name="surname">
+            <br><br>
+            
+            <label for="firstname">First name</label>
+            <input id="firstname" type="text" name="firstname">
+            <br><br>
+            
+            <label for="middlename">Middle name</label>
+            <input id="middlename" type="text" name="middlename">
+            <br><br>
+            
+            <label>You are</label>
+            
+            <input id="male" type="radio" name="sex" value="male" checked>
+            <label for="male">male</label>
+            
+            <input id="female" type="radio" name="sex" value="male">
+            <label for="female">female</label>
+            <br><br>
+            
+            <label for="age">Age</label>
+            <input id="age" type="number" min="18" max="101" name="age">
+            <br><br>
+            
+            <label for="country">Country of Residence</label>
+            <select id="country" name="country">
+                <option>Russian Federation</option>
+                <option>United States of America</option>
+                <option>United Kindom</option>
+                <option>Union of Soviet Socialist Republics</option>
+            </select>
+            <br><br>
+            
+            <label>City</label>
+            
+            <input id="ryazan" type="checkbox" name="ryazan">
+            <label for="ryazan">Ryazan</label>
+            
+            <input id="moscow" type="checkbox" name="moscow">
+            <label for="moscow">Moscow</label>
+            <br><br>
+            
+            <label for="fileload">Photography</label>
+            <button id="fileload" type="button">Выберите файл</button>
+            <label>Файл не выбран</label>
+            <br>
+            <hr>
+            
+            <label for="themes">Title</label>
+            <select id="themes" name="themes[]" size="8" multiple>
+                <optgroup label="Technologies">
+                    <option value="webmaster">Web Master</option>
+                    <option value="databaseadmin">Database Administrator</option>
+                    <option value="compdesign">Computer-aided design</option>
+                </optgroup>
+                <optgroup label="Finance">
+                    <option value="ecoplan">Economic Planning</option>
+                    <option value="management">Management accounting</option>
+                    <option value="budget">Budgeting and planning</option>
+                </optgroup>
+            </select>
+            <br><br>
+            
+            <label for="salary">Salary</label>
+            <input id="salary" type="range" name="salary">
+            <br><br>
+            
+            <textarea name="about" placeholder="Tell about youself..." rows="8" cols="40"></textarea>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Contact information</legend>
+            
+            <label for="site">Site</label>
+            <input id="site" type="text" name="site">
+            <br><br>
+            
+            <label for="email">Email</label>
+            <input id="email" type="text" name="email">
+            <br><br>
+            
+            <label for="phone">Phone</label>
+            <input id="phone" type="text" name="phone">
+        </fieldset>
+        <br>
+        
+        <label for="pass">Password</label>
+        <input id="pass" type="password" name="pass" required>
+        <br><br>
+        
+        <input type="submit" value="Отправить">
+        <button type="button">Сбросить</button>
+    </form>
 </body>
 </html>
