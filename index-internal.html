@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Title</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+        #block1 {
+            width: 300px;
+            height: 50px;
+            margin-bottom: 10px;
+            background-color: #9999cc;
+        }
+        #block2 {
+            width: 30%;
+            height: 50px;
+            margin-bottom: 10px;
+            background-color: #9999cc;
+        }
+        #block3 {
+            width: 5in;
+            height: 2em;
+            margin-bottom: 10px;
+            background-color: #9999cc;
+        }
+        .block-in-block {
+            border: 1px solid #666;
+        }
+        .block-in-block > div {
+            width: 300px;
+            height: 100px;
+            margin: 10px;
+            padding: 20px;
+            background-color: #99cc99;
+        }
+        .block-in-block-2 > .block-with-bg {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #666;
+            background-image: url(./cor_caval2-766770.png);
+        }
+        .block-in-block-2 > .block-with-bg.variant1 {
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .block-in-block-2 > .block-with-bg.variant2 {
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .block-in-block-2 > .block-with-bg.variant3 {
+            background-size: contain; 
+            background-repeat: repeat;
+        }
+        .color-block {
+            width: 150px;
+            height: 50px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .color-block.variant1 {
+            background-color: purple;
+        }
+        .color-block.variant2 {
+            background-color: #cc99cc;
+        }
+        .color-block.variant3 {
+            background-color: rgb(220,180,220);
+        }
+        #outer-solid {
+            width: 300px;
+            height: 100px;
+            padding: 20px;
+            background-color: rgba(180,180,220,1);
+        }
+        #inner-transparent {
+            width: 300px;
+            height: 100px;
+            padding: 20px; 
+            background-color: rgba(220,180,220,0.5);
+        }
+        .times {
+            font-family: Times Ne Roman;
+        }
+        .arial {
+            font-family: Arial;
+        }
+        .italic {
+            font-style: italic;
+        }
+        .font-16 {
+            font-size: 16pt;
+        }
+        .font-24 {
+            font-size: 24pt;
+        }
+        .smallcaps {
+            font-variant: small-caps;
+        }
+        .bold-james-bold {
+            font-weight: 600;
+        }
+        .text-warning {
+            color: red;
+        }
+        .text-success {
+            color: #99cc99; 
+        }
+        .text-left {
+            text-align: left;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-justify {
+            text-align: justify;
+        }
+        .text-underline {
+            text-decoration: underline;
+        }
+        .text-linethrough {
+            text-decoration: line-through;
+        }
+        .text-overline {
+            text-decoration: overline;
+        }
+        .text-upcase {
+            text-transform: uppercase;
+        }
+        .text-lowcase {
+            text-transform: lowercase;
+        }
+        .text-cap {
+            text-transform: capitalize;
+        }
+        .letter-space-10 {
+            letter-spacing: 10px;
+        }
+        .letter-space-m2 {
+            letter-spacing: -2px;
+        }
+        .line-h-1 {
+            line-height: 1em;
+        }
+        .line-h-3 {
+            line-height: 3em;
+        }
+        .glitch {
+            text-shadow: 2px 1px 0 rgba(120,220,120,1), -1px -2px 0 rgba(220,120,120,1);
+        }
+        .text-up {
+            vertical-align: super;
+        }
+        .text-sub {
+            vertical-align: sub;
+        }
+        #block4, #block5 {
+            width: 300px;
+            margin-bottom: 10px;
+            background-color: #cccc99;
+        }
+        .text-nowrap {
+            white-space: nowrap
+        }
+        .word-space-10 {
+            word-spacing: 10px;
+        }
+        .word-space-50 {
+            word-spacing: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Units</h3>
+    <div id="block1">This block is 300px width and 50px height</div>
+    <div id="block2">This block is 30% width and 50px height</div>
+    <div id="block3">This block is 5in width and 2em height</div>
+    
+    
+    <h3>Width, height, padding and margin</h3>
+    <div class="block-in-block">
+        <div>
+            Block content 300px x 100px
+        </div>
+    </div>
+    
+    
+    <h3>Background</h3>
+    <h4>cover no-repeat</h4>
+    <div class="block-in-block-2">
+        <div class="block-with-bg variant1">
+            Block content
+        </div>
+    </div>
+    
+    <h4>contait no-repeat</h4>
+    <div class="block-in-block-2">
+        <div class="block-with-bg variant2">
+            Block content
+        </div>
+    </div>
+    
+    <h4>contait repeat</h4>
+    <div class="block-in-block-2">
+        <div class="block-with-bg variant3">
+            Block content
+        </div>
+    </div>
+    
+    
+    <h3>Color</h3>
+    <h4>solid</h4>
+    <div class="color-block variant1">purple</div>
+    <div class="color-block variant2">#CC99CC</div>
+    <div class="color-block variant3">rgb(220,180,220)</div>
+    
+    <h4>with alpha-chanal</h4>
+    <div id="outer-solid">
+        <div id="inner-transparent">
+            50% of color
+        </div>
+    </div>
+    
+    
+    <h3>Fonts</h3>
+    <h4>font-family</h4>
+    <p class="times">
+        Times New Roman: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    <p class="arial">
+        Arial: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    
+    <h4>font-style</h4>
+    <p>
+        Normal: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    <p class="italic">
+        Italic: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    
+    <h4>font-size</h4>
+    <span class="font-16">font-size: 16pt</span> and <span class="font-24">font-size: 24pt</span>
+    
+    <h4>font-variant</h4>
+    <p class="smallcaps">
+        Small-caps: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    
+    <h4>font-weight</h4>
+    <p class="bold-james-bold">
+        Bold: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    <p class="bold-james-bold">
+        and 600 unit weigth: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    
+    
+    <h3>Text</h3>
+    <h4>color</h4>
+    <p class="text-warning">
+        Red: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    <p style="text-success">
+        and #99CC99 HEX-color: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    
+    <h4>text-align</h4>
+    <p class="text-left">
+        Left: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    <p class="text-right">
+        Right: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    <p class="text-center">
+        Center: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    <p class="text-justify">
+        Justify: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    
+    <h4>text-decoration</h4>
+    <p class="text-decoration: underline">
+        Underline: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>    
+    <p class="text-decoration: line-through">
+        Line-through: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    <p class="text-decoration: overline">
+        Overline: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>    
+    
+    <h4>text-transform</h4>
+    <p class="text-upcase">
+        Uppercase: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    <p class="text-lowcase">
+        Lowercase: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    <p class="text-cap">
+        Capitalize: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    
+    <h4>letter-spacing</h4>
+    <p class="letter-space-10">
+        10px: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    <p class="letter-space-m2">
+        -2px: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    
+    <h4>line-height</h4>
+    <p class="line-h-1">
+        1em: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    <p class="line-h-3">
+        3em: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus.
+    </p>
+    
+    <h4>text-shadow</h4>
+    <span class="font-24 glitch">Title</span>
+    
+    <h4>vertical-align</h4>
+    <p>
+        Text <span class="text-up">super</span>
+    </p>
+    <p>
+        Text <span class="text-sub">sub</span>
+    </p>
+    
+    <h4>white-space</h4>
+    <div id="block4">
+        Normal: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus
+    </div>
+    <div id="block5" class="text-nowrap">
+        No wrap: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sem enim, condimentum in luctus ac, auctor a purus. Curabitur vitae convallis elit. Curabitur ornare nibh ligula, sit amet porta nisl pretium non. Nam vitae enim porta risus faucibus posuere vel non enim. Sed nec lorem ante. Mauris scelerisque nulla quis risus cursus, sed cursus eros cursus
+    </div>
+    
+    <h4>word-spacing</h4>
+    <p class="word-space-10">
+        10px: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    <p class="word-space-50">
+        50px: <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    
+</body>
+</html>
