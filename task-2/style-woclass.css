@@ -1,0 +1,38 @@
+body {
+    font-family: arial;
+    font-size: 10pt;
+}
+
+table {
+    color: #335588;
+}
+
+table tr:nth-child(even) {
+    background-color: #e9e9ee;
+}
+
+table tr:nth-child(odd) {
+    background-color: #ddddee;
+}
+
+table tr:hover:not(:first-child) {
+    background-color: #cccccc;
+}
+
+table th {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 7pt;
+    font-weight: bolder;
+    padding: 4px 0;
+    background-color: #ddddee;    
+}
+
+table td {
+    text-align: left;
+    padding: 10px 12px;
+}
+
+table td:first-child {
+    text-transform: capitalize;
+}

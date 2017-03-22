@@ -1,0 +1,38 @@
+body {
+    font-family: arial;
+    font-size: 10pt;
+}
+
+.table-striped {
+    color: #335588;
+}
+
+.table-striped tr:nth-child(even) {
+    background-color: #e9e9ee;
+}
+
+.table-striped tr:nth-child(odd) {
+    background-color: #ddddee;
+}
+
+.table-striped tr:hover:not(:first-child) {
+    background-color: #cccccc;
+}
+
+.table-striped th {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 7pt;
+    font-weight: bolder;
+    padding: 4px 0;
+    background-color: #ddddee;    
+}
+
+.table-striped td {
+    text-align: left;
+    padding: 10px 12px;
+}
+
+.table-striped td:first-child {
+    text-transform: capitalize;
+}
