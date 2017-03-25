@@ -1,0 +1,39 @@
+* {
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation {
+    margin: 20px 5px;
+    list-style: none;
+}
+
+.navigation > li {
+    display: inline-block;
+    padding: 4px 0 4px 10px;
+    margin-right: 10px;
+    font-size: 14pt;
+    transition: border .5s ease-out;
+}
+
+.navigation > li:not(:last-child) {
+    border-bottom: 3px solid transparent;
+}
+
+.navigation > li:not(:last-child):hover {
+    border-bottom: 3px solid blue;
+}
+
+.navigation > li > a {
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+.navigation > li:not(:last-child) > a {
+    border-right: 2px solid red;
+}
+
+.navigation > li:not(:last-child):hover > a {
+    border-right: 2px solid transparent;
+}
