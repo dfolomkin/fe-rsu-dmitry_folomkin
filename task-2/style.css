@@ -1,0 +1,27 @@
+* {
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0;
+}
+
+.conteiner {
+    margin: 0;
+    padding: 10px;
+}
+
+p {
+    margin: 10px 0 20px;
+    padding: 10px;
+}
+
+.p-1 {
+    background-color: #569099;
+    color: #fff;
+    font-size: 32pt;
+    font-weight: bold;
+}
+
+.p-2 {
+    background-color: #cad8d0;
+    font-size: 14pt;
+}
