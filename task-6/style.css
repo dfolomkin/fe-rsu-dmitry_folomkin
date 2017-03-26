@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans Condensed';
+}
+
+.container {
+    margin: 20px 0 40px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 22pt;    
+}
+
+.pageloader {
+    width: 70px;
+    margin: 20px auto;
+}
+
+.pageloader > div {
+    display: inline-block;
+    width: 10px;
+    height: 30px;
+    background-color: #9999cc;
+    animation: appear 1s infinite;
+}
+
+.pageloader > div:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.pageloader > div:nth-child(2) {
+    animation-delay: .1s;
+}
+
+.pageloader > div:nth-child(3) {
+    animation-delay: .2s;
+}
+
+.pageloader > div:nth-child(4) {
+    animation-delay: .3s;
+}
+
+.pageloader > div:nth-child(5) {
+    animation-delay: .4s;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.bouncing {
+    width: 160px;
+    margin: 20px auto;
+}
+
+.bouncing > div {
+    display: inline-block;
+    margin-left: -3px;
+}
+
+.square {
+    width: 30px;
+    height: 30px;
+    background-color: #9999cc;
+}
+
+.circle-path {
+    width: 100px;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    background-color: #ee3333;
+    border-radius: 15px;
+    animation: move 1s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes move {
+    0% {
+        margin-left: -8px;
+        transform: scaleX(.6);
+    }
+    5% {
+        transform: scaleX(1);
+    }
+    45% {
+        transform: scaleX(1);
+    }
+    50% {
+        margin-left: 78px;
+        transform: scaleX(.6);
+    }
+    55% {
+        transform: scaleX(1);
+    }
+    95% {
+        transform: scaleX(1);
+    }
+    100% {
+        margin-left: -8px;
+        transform: scaleX(.6);
+    }
+}
+
+.figure {
+    width: 60px;
+    margin: 20px auto;
+}
+
+.figure > div {
+    width: 60px;
+    height: 60px;
+    animation: anim-3 10s infinite step-end;
+    animation-timing-function: linear;
+}
+
+@keyframes anim-3 {
+    0% {
+        border-radius: 50%;
+        background: linear-gradient(to bottom, #99cc99 0%, #99cccc 100%);        
+    }
+    15% {
+        border-radius: 0;
+        background: linear-gradient(to bottom, #99cc99 0%, #99cccc 100%);
+    }
+    30% {
+        border-radius: 0;
+        background: linear-gradient(to bottom, #99cccc 0%, #cc9999 100%);
+    }
+    45% {
+        transform: scale(2,2);
+        transform: skew(30deg,30deg);
+        border-radius: 0;
+        background: linear-gradient(to bottom, #99cccc 0%, #cc9999 100%);
+    }
+    60% {
+        border-radius: 0;
+        background: linear-gradient(to bottom, #99cccc 0%, #cc9999 100%);
+    }
+    75% {
+        transform: rotate(360deg);
+        border-radius: 0;
+        background: linear-gradient(to bottom, #99cccc 0%, #cc9999 100%);
+    }
+    90% {
+        border-radius: 0;
+        background: linear-gradient(to bottom, #99cc99 0%, #99cccc 100%);
+    }
+    100% {
+        border-radius: 50%;
+        background-color: #99cc99;
+    }
+}
