@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 20px;
+}
+
+.radial-gradient-block {
+    width: 420px;
+    height: 260px;
+    border: 2px solid #ccc;
+    background: radial-gradient(circle, #00bc9e 0%, #00bc9e 30%, #fff 31%);
+    margin: 0 auto 50px;
+}
+
+.gradient-button {
+    width: 300px;
+    height: 86px;
+    display: block;
+    margin: 0 auto 50px;
+    padding: 3px;    
+    background: linear-gradient(180deg, #8b93c8 0%, #575ce7 50%, #8b93c8 100%);
+    border-radius: 30px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: all .5s ease-out;
+}
+
+.gradient-button:hover {
+    box-shadow: 0 0 20px rgba(0,188,158,0.7);
+}
+
+.gradient-button > div {
+    height: 76px;
+    background: linear-gradient(180deg, #8b93c8 0%, #575ce7 50%, #8b93c8 100%);
+    border-radius: 25px;
+    border: 2px solid #fff;    
+    padding: 12px 0;    
+    font-family: sans-serif;
+    font-size: 28pt;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: #fff;
+}
