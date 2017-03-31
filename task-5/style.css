@@ -5,7 +5,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: Arial;    
+    font-family: Times New Roman;    
 }
 
 .top-bar {
@@ -54,12 +54,20 @@ html, body {
     margin: 0;
     padding: 0;
     color: #fff;
-    font-size: 11pt;
+    font-size: 12pt;
+    letter-spacing: 0px;
     text-decoration: none;
 }
 
 .menu > li.black {
-    background-color: #333;
+    width: 110px;
+    padding: 8px;
+    background-color: #222;
+    text-align: center;
+}
+
+.menu > li.black img {
+    float: right;
 }
 
 .menu > li:hover {
