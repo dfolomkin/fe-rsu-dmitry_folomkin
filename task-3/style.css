@@ -28,6 +28,7 @@
 .navigation > li > a {
     text-decoration: none;
     padding-right: 10px;
+    transition: border .5s ease-out;
 }
 
 .navigation > li:not(:last-child) > a {
