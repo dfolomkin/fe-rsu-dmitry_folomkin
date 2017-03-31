@@ -25,6 +25,12 @@ html, body {
     display: inline-block;
 }
 
+.container .flex {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
 .card {
     position: relative;
     width: 200px;
