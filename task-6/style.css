@@ -1,0 +1,102 @@
+* {
+    box-sizing: border-box;    
+}
+
+html, body {
+    margin: 0;
+    padding: 0;   
+}
+
+.container {
+    padding: 15px;
+    margin: 0 0 15px;
+}
+
+.container h1 {
+    margin: 0 0 15px;
+    font-size: 16pt;
+}
+
+.container.float .card {
+    float: left;
+}
+
+.container.inline-block .card {
+    display: inline-block;
+}
+
+.card {
+    position: relative;
+    width: 200px;
+    margin: 0 15px 15px 0;    
+}
+
+.card-content {
+    position: relative;
+    margin: 0 0 10px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+
+.card-content-bg {
+    height: 220px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card-content-overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 179px;
+    height: 220px;
+    background: rgba(50,50,50,.8);
+    opacity: 0;
+}
+
+.card-content-overlay-label {
+    width: 120px;
+    margin: 50% auto 0;
+    color: #fff;
+    text-align: center;
+}
+
+.card-content-overlay:hover {
+    opacity: 1;
+}
+
+.clr-1 {
+    color: #999;
+}
+
+.clr-2 {
+    color: #8EC84B;
+}
+
+.card-control > button {
+    padding: 8px 22px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #fff 0%, #ccc 100%);
+    color: #777;
+    cursor: pointer;
+}
+
+.card-control > button:not(:last-child) {
+    float: left;
+}
+
+.card-control > button:last-child {
+    float: right;
+}
+
+.card-control > button:hover {
+    background: #8EC84B;
+    color: #fff;
+}
+
+.clearfix {
+    clear: both;
+}
