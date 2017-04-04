@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'ProximaNova';
+    src: url('../fonts/ProximaNovaBold.otf');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ProximaNova';
+    src: url('../fonts/ProximaNovaRegular.otf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ProximaNova';
+    src: url('../fonts/ProximaNovaLight.otf');
+    font-weight: 200;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.html, body {
+    height: 100%;
+    margin: 0;
+    font-family: ProximaNova;
+    font-size: 10pt;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    flex-basis: 45px;
+    background-color: #2f364a;
+}
+
+.header__topmenu {
+    display: flex;
+    justify-content: flex-end;
+    height: 45px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.header__item {
+    padding: 15px;
+    color: #4f576e;
+}
+
+.header__link {
+    color: #4f576e;
+    text-decoration: none;
+}
+
+.header__link:hover {
+    color: #fff;
+}
+
+
+
+.main {
+    display: flex;
+    height: calc(100vh - 90px);
+}
+
+.left-side {
+    flex-basis: 15%;
+    background-color: #cccc99;
+}
+
+.section {
+    background-color: #cc9999;
+}
+
+.footer {
+    flex-basis: 45px;
+    background-color: #181e2c;
+}
