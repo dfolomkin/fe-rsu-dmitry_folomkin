@@ -35,6 +35,12 @@
     flex-direction: column;
 }
 
+
+
+/* ------------------------------------------- *\
+    HEADER
+\* ------------------------------------------- */
+
 .header {
     display: flex;
     justify-content: flex-end;
@@ -42,7 +48,7 @@
     background-color: #2f364a;
 }
 
-.header__topmenu {
+.v-menu {
     display: flex;
     justify-content: flex-end;
     height: 45px;
@@ -51,50 +57,40 @@
     list-style: none;
 }
 
-.header__item {
+.v-menu__item {
     padding: 15px;
-    color: #4f576e;
-}
-
-.header__item:hover {
-    background-color: #15a4fa;
-}
-
-.header__link {
-    color: #4f576e;
-    text-decoration: none;
-}
-
-.header__item:hover > .header__link {
-    color: #fff;
-}
-
-.account {
-    display: flex;
-    align-items: center;
-    height: 45px;
-    margin: 0;
-    padding: 15px;
-    color: #4f576e;
+    color: #78829d;
     cursor: pointer;
 }
 
-.account:hover {
+.v-menu__item:hover {
     background-color: #15a4fa;
     color: #fff;
 }
 
-.account__avatar {
+.v-menu__link {
+    color: #78829d;
+    text-decoration: none;
+}
+
+.v-menu__item:hover .v-menu__link {
+    color: #fff;
+}
+
+.v-menu__avatar {
+    float: left;
+    position: relative;
+    top: -8px;
     width: 32px;
     height: 32px;
-    margin-right: 10px;
+    margin-right: 12px;
     border-radius: 15px;
-    border: 2px solid #4f576e;
+    border: 2px solid #78829d;
     background-size: cover;
     background-position: center;
 }
 
-.account:hover > .account__avatar {
+.v-menu__item:hover .v-menu__avatar {
     border: 2px solid #fff;
 }
 
@@ -105,27 +101,163 @@
     padding: 0.3em;
     border-radius: 6px;
     font-size: 5pt;
-    background-color: #4f576e;
+    background-color: #78829d;
     color: #2f364a;
 }
 
-.account:hover > .account__shevron-down {
+.account:hover .account__shevron-down {
     background-color: #fff;
     color: #15a4fa;
 }
+
+
 
 .main {
     display: flex;
     height: calc(100vh - 90px);
 }
 
-.left-side {
+
+
+/* ------------------------------------------- *\
+    ASIDE NAVI
+\* ------------------------------------------- */
+
+.aside {
     flex-basis: 15%;
-    background-color: #cccc99;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;    /* очень спорное решение */
+    justify-content: space-between;
+    background-color: #19202e;
 }
 
+.aside-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    background-color: #1f2637;
+    border-top: 1px solid #273044;
+    border-bottom: 1px solid #191f2e;    
+}
+
+.aside-block:first-child {
+    border-top: 0;
+}
+
+.aside-block:last-child {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.aside-block-general {
+    padding: 30px 20px;
+}
+
+.aside-block-nav {
+    display: block;    /* если flex, то елементы не растягиваются на всю ширину */
+    padding: 20px 0;
+}
+
+.add-item-button {
+    width: 100%;
+    min-height: 44px;
+    margin: auto;
+    padding: 0 15px;
+    border: 0;
+    border-radius: 4px;    
+    background-color: #f2795a;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;    
+    transform: scaleY(0.9);
+    cursor: pointer;
+}
+
+.add-item-button:hover {
+    background-color: #ec9f8c;
+}
+
+.nav {
+    display: flex;    /* flex - для растягивания элементов на всю ширину */
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav__item {    
+    height: 38px;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.nav__item:hover {
+    background-color: #15a4fa;
+}
+
+.nav__link {
+    color: #78829d;
+    text-decoration: none;
+}
+
+.nav__item:hover .nav__link {
+    color: #fff;
+}
+
+.nav__dot {
+    transform: scale(0.4, 0.4);
+}
+
+.nav__dot--color1 {
+    color: #e64c66;
+}
+
+.nav__dot--color2 {
+    color: #ffab00;
+}
+
+.nav__dot--color3 {
+    color: #02b5d2;
+}
+
+.nav__dot--color4 {
+    color: #7874cf;
+}
+
+.history-block {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    color: #41495e;
+    font-size: 9pt;
+    font-weight: 100;
+}
+
+.history-block__icon {
+    margin-right: 10px;
+    color: #78829d;
+    font-size: 12pt;    
+}
+
+.history-block__event {
+    margin-bottom: 10px;
+}
+
+.history-block__text-highlight {
+    font-weight: 400;
+    color: #78829d;
+}
+
+
+
+/* ------------------------------------------- *\
+    SECTION
+\* ------------------------------------------- */
+
+
 .section {
-    background-color: #cc9999;
+    
 }
 
 .footer {

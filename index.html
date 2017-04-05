@@ -8,28 +8,70 @@
 </head>
 <body class="container">
     <header class="header">
-        <ul class="header__topmenu">
-            <li class="header__item"><a href="" class="header__link">Help Center</a></li>
-            <li class="header__item"><a href="" class="header__link">Our Support</a></li>     
-        </ul>
-        <div class="account">
-            <div class="account__avatar" style="background-image: url('./images/avatar_01.png')"></div>
-            <div class="account__name">John Doe</div>
-            <div class="account__shevron-down"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-        </div>
+        <ul class="v-menu">
+            <li class="v-menu__item"><a href="" class="v-menu__link">Help Center</a></li>
+            <li class="v-menu__item"><a href="" class="v-menu__link">Our Support</a></li>
+            <li class="v-menu__item">
+                <div class="v-menu__dropdown-header">
+                    <div class="v-menu__avatar" style="background-image: url('./images/avatar_01.png')"></div>
+                    John Doe
+                    &emsp;<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+                </div>
+            </li>
+        </ul>        
     </header>
     
     <main class="main">
-        <aside class=left-side>
-            ываюлпофыдвфывалп
+        <aside class=aside>
+            <div class="aside-block aside-block-general">
+                <button class="add-item-button"><i class="fa fa-plus" aria-hidden="true"></i>&emsp;Add a book</button>
+            </div>
+            
+            <div class="aside-block aside-block-nav">
+                <nav class="nav">
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-book" aria-hidden="true"></i>&ensp;Now Reading</a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-globe" aria-hidden="true"></i>&ensp;Browse</a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&ensp;Buy Books</a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-star" aria-hidden="true"></i>&ensp;Favourite Books</a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-th-list" aria-hidden="true"></i>&ensp;Wishlist</a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-clock-o" aria-hidden="true"></i>&ensp;History</a></li>
+                </nav>
+            </div>
+            
+            <div class="aside-block aside-block-nav">
+                <ul class="nav">
+                   <!-- здесь надо изменить на nav__list-dot -->
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-circle nav__dot nav__dot--color1" aria-hidden="true"></i>&ensp;Must Read Titles</a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-circle nav__dot nav__dot--color2" aria-hidden="true"></i>&ensp;Best of List</a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-circle nav__dot nav__dot--color3" aria-hidden="true"></i>&ensp;Classic Novels</a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-circle nav__dot nav__dot--color4" aria-hidden="true"></i>&ensp;Non Fiction</a></li>
+                </ul>
+            </div>
+            
+            <div class="aside-block aside-block-general">
+                <div class="history-block">
+                    <div class="history-block__icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                    <div>
+                        <div class="history-block__event">You added <span class="history-block__text-highlight">Fight Club</span> by <span class="history-block__text-highlight">Chuck Palahniuk</span> to your <span class="history-block__text-highlight">Must Read Titles</span>.</div>
+                        <div class="history-block__datetime">24 minutes ago</div>
+                    </div>                                   
+                </div>
+                <div class="history-block">
+                    <div class="history-block__icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                    <div>
+                        <div class="history-block__event">You added <span class="history-block__text-highlight">the Trial</span> by <span class="history-block__text-highlight">Franz Kafka</span> to your <span class="history-block__text-highlight">Must Read Titles</span>.</div>
+                        <div class="history-block__datetime">48 minutes ago</div>
+                    </div>                                   
+                </div>
+            </div>
         </aside>
         <section class="section">
-            asdfjhaslkjfkasdfga
+            
         </section>
     </main>
     
     <footer class="footer">
-        ываываыва
+        
     </footer>
 </body>
 </html>
