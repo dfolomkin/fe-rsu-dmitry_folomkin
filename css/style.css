@@ -37,6 +37,7 @@
 
 .header {
     display: flex;
+    justify-content: flex-end;
     flex-basis: 45px;
     background-color: #2f364a;
 }
@@ -55,16 +56,63 @@
     color: #4f576e;
 }
 
+.header__item:hover {
+    background-color: #15a4fa;
+}
+
 .header__link {
     color: #4f576e;
     text-decoration: none;
 }
 
-.header__link:hover {
+.header__item:hover > .header__link {
     color: #fff;
 }
 
+.account {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    margin: 0;
+    padding: 15px;
+    color: #4f576e;
+    cursor: pointer;
+}
 
+.account:hover {
+    background-color: #15a4fa;
+    color: #fff;
+}
+
+.account__avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    border-radius: 15px;
+    border: 2px solid #4f576e;
+    background-size: cover;
+    background-position: center;
+}
+
+.account:hover > .account__avatar {
+    border: 2px solid #fff;
+}
+
+.account__shevron-down {
+    width: 12px;
+    height: 12px;
+    margin-left: 10px;
+    padding: 0.3em;
+    border-radius: 6px;
+    font-size: 5pt;
+    background-color: #4f576e;
+    color: #2f364a;
+}
+
+.account:hover > .account__shevron-down {
+    background-color: #fff;
+    color: #15a4fa;
+}
 
 .main {
     display: flex;
