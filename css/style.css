@@ -110,6 +110,14 @@
     color: #15a4fa;
 }
 
+.top-menu__dot {
+    transform: scale(0.4, 0.4);
+}
+
+.top-menu__dot--color1 {
+    color: #19202e;
+}
+
 
 
 .main {
@@ -125,18 +133,17 @@
 \* ------------------------------------------- */
 
 .aside {
-    flex-basis: 15%;
+    flex-basis: 200px;
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;    /* очень спорное решение */
-    justify-content: space-between;
+    overflow-y: auto;    /* очень спорное решение */
+    justify-content: flex-start;    
     background-color: #19202e;
 }
 
 .aside-block {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 8px;
+    display: block;        
+    margin-bottom: 6px;
     background-color: #1f2637;
     border-top: 1px solid #273044;
     border-bottom: 1px solid #191f2e;    
@@ -148,7 +155,7 @@
 
 .aside-block:last-child {
     margin-bottom: 0;
-    border-bottom: 0;
+    border-bottom: 0;    
 }
 
 .aside-block--general {
@@ -270,7 +277,7 @@
 \* ------------------------------------------- */
 
 .section {
-    flex-basis: 85%;
+    flex-basis: calc(100% - 200px);
     display: flex;
     flex-direction: column;    
 }
@@ -307,6 +314,7 @@
     left: -10px;
     height: 20px;
     margin: 5px 0;
+    padding: 0;
     list-style: none;
 }
 
@@ -448,13 +456,12 @@
 
 
 ::-webkit-scrollbar {
-    width: 18px;
+    width: 6px;
 }
  
 ::-webkit-scrollbar-thumb {
-    border-radius: 9px;
+    border-radius: 3px;
     background-color: #ccd5e4;
-    border: 6px solid #fff;
 }
 
 .blue-sky {
