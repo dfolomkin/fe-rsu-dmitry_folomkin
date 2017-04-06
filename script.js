@@ -48,11 +48,9 @@ console.log('i++ returns value before inc:', i++, 'and ++j returns value after i
 function checkSign(x) {
     if (x < 0) {
         return 'negative';
-    }
-    else if (x > 0) {
+    } else if (x > 0) {
         return 'positive';
-    }
-    else {
+    } else {
         return 'zero';
     }
 }
@@ -69,8 +67,7 @@ function fact(x) {
     var res;
     if (x==0) {
         res = 1;
-    }
-    else {
+    } else {
         res = x*(fact(x-1));
     }
     return res;
