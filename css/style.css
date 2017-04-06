@@ -48,7 +48,7 @@
     background-color: #2f364a;
 }
 
-.v-menu {
+.top-menu {
     display: flex;
     justify-content: flex-end;
     height: 45px;
@@ -57,27 +57,27 @@
     list-style: none;
 }
 
-.v-menu__item {
+.top-menu__item {
     padding: 15px;
     color: #78829d;
     cursor: pointer;
 }
 
-.v-menu__item:hover {
+.top-menu__item:hover {
     background-color: #15a4fa;
     color: #fff;
 }
 
-.v-menu__link {
+.top-menu__link {
     color: #78829d;
     text-decoration: none;
 }
 
-.v-menu__item:hover .v-menu__link {
+.top-menu__item:hover .top-menu__link {
     color: #fff;
 }
 
-.v-menu__avatar {
+.top-menu__avatar {
     float: left;
     position: relative;
     top: -8px;
@@ -90,7 +90,7 @@
     background-position: center;
 }
 
-.v-menu__item:hover .v-menu__avatar {
+.top-menu__item:hover .top-menu__avatar {
     border: 2px solid #fff;
 }
 
@@ -150,14 +150,15 @@
     border-bottom: 0;
 }
 
-.aside-block-general {
+.aside-block--general {
     padding: 30px 20px;
 }
 
-.aside-block-nav {
-    display: block;    /* если flex, то елементы не растягиваются на всю ширину */
-    padding: 20px 0;
+.aside-block--nav {    
+    padding: 10px 0;
 }
+
+
 
 .add-item-button {
     width: 100%;
@@ -177,6 +178,8 @@
 .add-item-button:hover {
     background-color: #ec9f8c;
 }
+
+
 
 .nav {
     display: flex;    /* flex - для растягивания элементов на всю ширину */
@@ -205,6 +208,14 @@
     color: #fff;
 }
 
+.nav__item--active {
+    background-color: #15a4fa;
+}
+
+.nav__item--active .nav__link {
+    color: #fff;
+}
+
 .nav__dot {
     transform: scale(0.4, 0.4);
 }
@@ -224,6 +235,8 @@
 .nav__dot--color4 {
     color: #7874cf;
 }
+
+
 
 .history-block {
     display: flex;
@@ -255,12 +268,136 @@
     SECTION
 \* ------------------------------------------- */
 
-
 .section {
-    
+    flex-basis: 85%;
+    display: flex;
+    flex-direction: column;
 }
+
+.section-header-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 6px 20px;
+    background-color: #eef1f7;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.section-header-bar--fat {
+    height: 70px;
+}
+
+.section-header-bar--thin {
+    height: 45px;
+}
+
+.section__title {
+    margin: 12pt 0;
+    color: #4d5775;
+    font-size: 15pt;
+    font-weight: 400;
+}
+
+
+
+.tabs {
+    position: relative;
+    left: -10px;
+    height: 20px;
+    margin: 5px 0;
+    list-style: none;
+}
+
+.tabs__item {
+    display: inline-block;
+    height: 20px;
+    margin-right: 4px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 9pt;
+}
+
+.tabs__item:hover {
+    background-color: #97b3ce;
+}
+
+.tabs__link {
+    text-decoration: none;
+    color: #78829d;
+}
+
+.tabs__item:hover .tabs__link {
+    color: #fff;
+}
+
+.tabs__item--active {
+    background-color: #97b3ce;
+}
+
+.tabs__item--active .tabs__link {
+    color: #fff;
+}
+
+
+
+.search-bar {
+    position: relative;
+}
+
+.search-bar__input {
+    height: 30px;
+    padding: 0 30px 0 10px;
+    border-radius: 23px;
+    border: 1px solid #ddd;
+    color: #78829d;
+}
+
+.search-bar__icon {
+    position: absolute;
+    top: 7px;
+    right: 12px;
+    color: #78829d;
+}
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------- *\
+    FOOTER
+\* ------------------------------------------- */
 
 .footer {
     flex-basis: 45px;
     background-color: #181e2c;
+}
+
+.bot-menu {
+    display: flex;
+    justify-content: flex-end;
+    height: 45px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bot-menu__item {
+    padding: 15px 20px;
+    background-color: #1f2637;
+    cursor: pointer;
+}
+
+.bot-menu__item:hover {
+    background-color: #15a4fa;
+}
+
+.bot-menu__link {
+    color: #fff;
+    text-decoration: none;
 }
