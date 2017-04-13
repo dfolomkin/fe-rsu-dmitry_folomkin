@@ -25,7 +25,7 @@ function logCurrentDay() {
             str += "Saturday";
             break;
     }
-    str += " and now is: " + date.getHours() + ":" + date.getMinutes() + ":" + ((date.getSeconds()<10)?"0":"") + date.getSeconds();
+    str += " and now is: " + date.getHours() + ":" + date.getMinutes() + ":" + ((date.getSeconds() < 10) ? "0" : "") + date.getSeconds();
     console.log(str);
 }
 logCurrentDay();
@@ -55,9 +55,9 @@ logAllFirstSundaysOfJanuary();
 function countDaysUntilNewYear() {
     var currentDate = new Date();
     var newDate = new Date();
-    newDate.setFullYear(currentDate.getFullYear()+1, 0, 1);
+    newDate.setFullYear(currentDate.getFullYear() + 1, 0, 1);
     var timeDiff = newDate.getTime() - currentDate.getTime();
-    return timeDiff/1000/60/60/24 - 1;
+    return timeDiff / 1000 / 60 / 60 / 24 - 1;
 }
 console.log('Until New Year: ' + countDaysUntilNewYear() + ' days');
 
@@ -110,12 +110,12 @@ function invertCase(str) {
     var newStr = '';
     for (var i = 0; i < str.length; i++) {
         if ((str.charCodeAt(i) >= 65) && (str.charCodeAt(i) <= 90)) {
-            newStr += String.fromCharCode(str.charCodeAt(i) + 32);            
+            newStr += String.fromCharCode(str.charCodeAt(i) + 32);
         } else if ((str.charCodeAt(i) >= 97) && (str.charCodeAt(i) <= 122)) {
-            newStr += String.fromCharCode(str.charCodeAt(i) - 32);            
+            newStr += String.fromCharCode(str.charCodeAt(i) - 32);
         } else {
             newStr += str[i];
-        }        
+        }
     }
     return newStr;
 }
@@ -123,27 +123,33 @@ console.log(invertCase('This Word'));
 
 //9
 function removeDuplicates(arr) {
-    /*
-    var arrLowCase;
     for (var i = 0; i < arr.length; i++) {
-        arrLowCase[i] = arr[i].toLowerCase(); 
+        while (arr.indexOf(arr[i], i + 1) > -1) {
+            delete arr[arr.indexOf(arr[i], i + 1)];
+        };
     }
-    */
-    
+    var arr2 = [];
     for (var i = 0; i < arr.length; i++) {
-        if (arr.indexOf(arr[i], i+1) > 0);
-    }
-    
-    /*
-    var elements = {};
-    var key;
-    for (var i = 0; i < arr.length; i++) {
-        key = arr[i];
-        if (elements[key] > 0) {
-            elements[key] += 1;
-        } else {
-            elements[key] = 1;
+        if (arr[i] != undefined) {
+            arr2.push(arr[i]);
         }
     }
-    */
+    return arr2;
 }
+console.log('Array without duplicates: ', removeDuplicates([1, 4, 2, 3, 1, 3, 1, 4]));
+
+//10
+function shuffle(arr) {
+    var arr2 = [];
+    var rnd;
+    for (var i = 0; i < arr.length; i++) {
+        do {
+            rnd = Math.floor(Math.random() * arr.length);
+        } while (arr[rnd] = undefined);
+        arr2[i] = arr[rnd];
+        delete arr[rnd];
+    }    
+    return arr2;
+}
+console.log('Shuffled array: ', shuffle([1, 2, 3, 4, 5, 6, 7, 8]));
+
