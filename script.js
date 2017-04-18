@@ -55,8 +55,9 @@ logAllFirstSundaysOfJanuary();
 function countDaysUntilNewYear() {
     var currentDate = new Date();
     var newDate = new Date();
+    var timeDiff;
     newDate.setFullYear(currentDate.getFullYear() + 1, 0, 1);
-    var timeDiff = newDate.getTime() - currentDate.getTime();
+    timeDiff = newDate.getTime() - currentDate.getTime();
     return timeDiff / 1000 / 60 / 60 / 24 - 1;
 }
 console.log("Until New Year: " + countDaysUntilNewYear() + " days");
@@ -69,9 +70,9 @@ function isArray(arr) {
         return false;
     }
 }
-console.log(isArray(123));
-console.log(isArray("string"));
-console.log(isArray([1, 2, 3]));
+console.log("Is 123 array?", isArray(123));
+console.log("Is 'String' array?", isArray("string"));
+console.log("Is '[1, 2, 3]' array?", isArray([1, 2, 3]));
 
 //6
 function cloneArr(arr) {
@@ -79,12 +80,14 @@ function cloneArr(arr) {
 }
 var a = [1, 2, 3];
 var b = cloneArr(a);
-console.log(b);
+console.log("Cloned array: ", b);
 
 //7
 function findFrequencyElement(arr) {
     var elements = {};
     var key;
+    var maxKey;
+    var maxCount = 0;
     for (var i = 0; i < arr.length; i++) {
         key = arr[i];
         if (elements[key] > 0) {
@@ -93,8 +96,6 @@ function findFrequencyElement(arr) {
             elements[key] = 1;
         }
     }
-    var maxKey;
-    var maxCount = 0;
     for (key in elements) {
         if (elements[key] > maxCount) {
             maxKey = key;
@@ -119,16 +120,16 @@ function invertCase(str) {
     }
     return newStr;
 }
-console.log(invertCase("This Word"));
+console.log("Inverted string case: ", invertCase("This Word"));
 
 //9
 function removeDuplicates(arr) {
+    var arr2 = [];
     for (var i = 0; i < arr.length; i++) {
         while (arr.indexOf(arr[i], i + 1) > -1) {
             delete arr[arr.indexOf(arr[i], i + 1)];
         };
     }
-    var arr2 = [];
     for (var i = 0; i < arr.length; i++) {
         if (arr[i] != undefined) {
             arr2.push(arr[i]);
@@ -148,8 +149,132 @@ function shuffle(arr) {
         } while (arr[rnd] == undefined);
         arr2[i] = rnd;
         delete arr[rnd];
-    }    
+    }
     return arr2;
 }
 console.log("Shuffled array: ", shuffle([1, 2, 3, 4, 5, 6, 7, 8]));
 
+//11
+function deleteNulls(arr) {
+    var arr2 = [];
+    for (var i = 0; i < arr.length; i++) {
+        if ((arr[i] == null) || (arr[i] == 0) || (arr[i] == "") || !arr[i] || (arr[i] == undefined) || (isNaN(arr[i]))) {
+            delete arr[i];
+        }
+    }
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] != undefined) {
+            arr2.push(arr[i]);
+        }
+    }
+    return arr2;
+}
+console.log("No nulls array: ", deleteNulls([0, 1, null, 2, "", 3, false, 4, undefined, 5, NaN]));
+
+//12
+var library = [
+    { author: "Bill Gates", title: "The Road Ahead", libraryID: 1254 },
+    { author: "Steve Jobs", title: "Walter Isaacson", libraryID: 4264 },
+    { author: "Suzanne Collins", title: "Mockingjay: The Final Book of The Hunger Games", libraryID: 3245 }
+];
+function sortLibrary() {
+    function compareElements(a, b) {
+        if (a["title"] > b["title"]) return 1;
+        if (a["title"] < b["title"]) return -1;
+    }
+    library.sort(compareElements);
+    return library;
+}
+console.log("Title sorted library: ", sortLibrary(library));
+
+//13
+function mergeArrays(arr1, arr2) {
+    var arr3 = [];
+    arr3 = arr1;
+    for (var i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) {
+            arr3.push(arr2[i]);
+        }
+    }
+    function sortNum(a, b) {
+        if (a > b) return 1;
+        if (a < b) return -1;
+    };
+    arr3.sort(sortNum);
+    return arr3;
+}
+console.log("Merged array: ", mergeArrays([1, 3, 5], [1, 2, 3, 4, 6]));
+
+//14
+function removeE(arr, elem) {
+    var arr2 = [];
+    while (arr.indexOf(elem) >= 0) {
+        delete arr[arr.indexOf(elem)];
+    }
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] != undefined) {
+            arr2.push(arr[i]);
+        }
+    }
+    return arr2;
+}
+console.log("Removed 3 from array: ", removeE([1, 2, 3, 4, 5, 6], 3));
+
+//15
+function getRandomE(arr) {
+    var rnd = Math.floor(Math.random() * arr.length);
+    return arr[rnd];
+}
+console.log("Got random element: ", getRandomE([1, 2, 3, 4, 5, 6]));
+
+16//
+function moveE(arr, elem, newPos) {
+    if (arr.indexOf(elem) >= 0) {
+        delete arr[arr.indexOf(elem)];
+        arr[newPos] = elem;
+    }
+    return arr;
+}
+console.log("Moved element: ", moveE([1, 2, 3, 4, 5, 6], 3, 5));
+
+//17
+function dateDiff(date1, date2) {
+    timeDiff = Date.parse(date2) - Date.parse(date1);
+    return timeDiff / 1000 / 60 / 60 / 24 - 1;
+}
+console.log("Days between two dates: ", dateDiff("2017/04/19", "2017/05/25"));
+
+//18
+function maxDate(arr) {
+    var maxNo = 0;
+    for (var i = 1; i < arr.length; i++) {
+        if (Date.parse(arr[i]) > Date.parse(arr[maxNo])) {
+            maxNo = i;
+        }
+    }
+    return arr[maxNo];
+}
+console.log("Max date of this list:", maxDate(["2015/02/01", "2015/02/02", "2015/01/03"]));
+
+//19
+function stringToArray(str) {
+    var word = "";
+    var arr = [];
+    for (var i = 0; i < str.length; i++) {
+        if (str[i] != " ") {
+            word += str[i];
+        } else {
+            arr.push(word);
+            word = "";
+        }
+    }
+    arr.push(word);
+    return arr;
+}
+console.log("String to Array result: ", stringToArray("I will cut this string"));
+
+//20
+function capFirst(str) {
+    return (str[0].toUpperCase() + str.substring(1, str.length));
+}
+console.log("String with UP first char: ", capFirst("upper this string!"));
