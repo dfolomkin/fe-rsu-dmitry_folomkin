@@ -39,12 +39,12 @@ logCurrentDate();
 
 //3
 function logAllFirstSundaysOfJanuary() {
-    var str = 'January 1 was/will be Sunday in: ';
-    var date = new Date;
+    var str = "January 1 was/will be Sunday in: ";
+    var date = new Date();
     for (var year = 2014; year <= 2050; year++) {
         date.setFullYear(year, 1, 1);
         if (date.getDay() == 0) {
-            str += year + ' ';
+            str += year + " ";
         }
     }
     console.log(str);
@@ -59,18 +59,18 @@ function countDaysUntilNewYear() {
     var timeDiff = newDate.getTime() - currentDate.getTime();
     return timeDiff / 1000 / 60 / 60 / 24 - 1;
 }
-console.log('Until New Year: ' + countDaysUntilNewYear() + ' days');
+console.log("Until New Year: " + countDaysUntilNewYear() + " days");
 
 //5
 function isArray(arr) {
-    if (typeof arr == 'object') {
+    if (typeof arr == "object") {
         return true;
     } else {
         return false;
     }
 }
 console.log(isArray(123));
-console.log(isArray('string'));
+console.log(isArray("string"));
 console.log(isArray([1, 2, 3]));
 
 //6
@@ -103,11 +103,11 @@ function findFrequencyElement(arr) {
     }
     return elements[maxKey];
 }
-console.log('The most frequent item is: ', findFrequencyElement([1, 2, 2, 3, 4, 5, 3, 3]));
+console.log("The most frequent item is: ", findFrequencyElement([1, 2, 2, 3, 4, 5, 3, 3]));
 
 //8
 function invertCase(str) {
-    var newStr = '';
+    var newStr = "";
     for (var i = 0; i < str.length; i++) {
         if ((str.charCodeAt(i) >= 65) && (str.charCodeAt(i) <= 90)) {
             newStr += String.fromCharCode(str.charCodeAt(i) + 32);
@@ -119,7 +119,7 @@ function invertCase(str) {
     }
     return newStr;
 }
-console.log(invertCase('This Word'));
+console.log(invertCase("This Word"));
 
 //9
 function removeDuplicates(arr) {
@@ -136,7 +136,7 @@ function removeDuplicates(arr) {
     }
     return arr2;
 }
-console.log('Array without duplicates: ', removeDuplicates([1, 4, 2, 3, 1, 3, 1, 4]));
+console.log("Array without duplicates: ", removeDuplicates([1, 4, 2, 3, 1, 3, 1, 4]));
 
 //10
 function shuffle(arr) {
@@ -145,11 +145,11 @@ function shuffle(arr) {
     for (var i = 0; i < arr.length; i++) {
         do {
             rnd = Math.floor(Math.random() * arr.length);
-        } while (arr[rnd] = undefined);
-        arr2[i] = arr[rnd];
+        } while (arr[rnd] == undefined);
+        arr2[i] = rnd;
         delete arr[rnd];
     }    
     return arr2;
 }
-console.log('Shuffled array: ', shuffle([1, 2, 3, 4, 5, 6, 7, 8]));
+console.log("Shuffled array: ", shuffle([1, 2, 3, 4, 5, 6, 7, 8]));
 
