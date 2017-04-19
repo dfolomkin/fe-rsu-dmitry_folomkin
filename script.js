@@ -1,3 +1,5 @@
+"use strict";
+
 // 1
 function logCurrentDay() {
     var date = new Date();
@@ -239,7 +241,7 @@ console.log("Moved element: ", moveE([1, 2, 3, 4, 5, 6], 3, 5));
 
 //17
 function dateDiff(date1, date2) {
-    timeDiff = Date.parse(date2) - Date.parse(date1);
+    var timeDiff = Date.parse(date2) - Date.parse(date1);
     return timeDiff / 1000 / 60 / 60 / 24 - 1;
 }
 console.log("Days between two dates: ", dateDiff("2017/04/19", "2017/05/25"));
@@ -278,3 +280,83 @@ function capFirst(str) {
     return (str[0].toUpperCase() + str.substring(1, str.length));
 }
 console.log("String with UP first char: ", capFirst("upper this string!"));
+
+//21
+function camelize(str) {
+    //process 1st char
+    var str = str[0].toLowerCase() + str.substring(1, str.length);
+    //process other chars
+    for (var i = 1; i < str.length; i++) {
+        if ((str[i] == " ") || (str[i] == "-")) {
+            str = str.substring(0, i) + str[i + 1].toUpperCase() + str.substring(i + 2, str.length)
+        }
+    }
+    return str;
+}
+console.log("Camelize 1: ", camelize("Java Script"));
+console.log("Camelize 2: ", camelize("java-script"));
+console.log("Camelize 3: ", camelize("Java Script Exercises"));
+
+//22
+function highValue(arr) {
+    var maxNo = 0;
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] > arr[maxNo]) {
+            maxNo = i;
+        }
+    }
+    return arr[maxNo];
+}
+console.log("Highest value of array: ", highValue([1, 2, 3, 4, 5, 6]));
+
+//23
+function loValue(arr) {
+    var minNo = 0;
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] < arr[minNo]) {
+            minNo = i;
+        }
+    }
+    return arr[minNo];
+}
+console.log("Lowest value of array: ", loValue([1, 2, 3, 4, 5, 6]));
+
+//24
+function isNumber(a) {
+    if (typeof a == "number") {
+        return true;
+    } else {
+        return false;
+    }
+}
+console.log("Check the number: ", isNumber(3));
+
+//25
+function sum(arr) {
+    var s = 0;
+    for (var i = 0; i < arr.length; i++) {
+        s += arr[i];
+    }
+    return s;
+}
+console.log("Sum: ", sum([1, 2, 3, 4, 5, 6]));
+
+//26
+function getObjLength(obj) {
+    var length = 0;
+    for (var key in obj) {
+        length++;
+    }
+    return length;
+}
+console.log("Object length: ", getObjLength({ author: "Bill Gates", title: "The Road Ahead", libraryID: 1254 }));
+
+//27
+function getPropArray(obj) {
+    var arr = [];
+    for (var key in obj) {
+        arr.push(key);
+    }
+    return arr;
+}
+console.log("Object properties: ", getPropArray({ author: "Bill Gates", title: "The Road Ahead", libraryID: 1254 }));
