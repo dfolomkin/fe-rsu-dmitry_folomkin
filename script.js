@@ -2,42 +2,21 @@
 
 // 1
 function logCurrentDay() {
+    var dayArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var date = new Date();
     var str = "Today is: ";
-    switch (date.getDay()) {
-        case 0:
-            str += "Sunday";
-            break;
-        case 1:
-            str += "Monday";
-            break;
-        case 2:
-            str += "Tuesday";
-            break;
-        case 3:
-            str += "Wednesday";
-            break;
-        case 4:
-            str += "Thursday";
-            break;
-        case 5:
-            str += "Friday";
-            break;
-        case 6:
-            str += "Saturday";
-            break;
-    }
+    str += dayArr[date.getDay()];
     str += " and now is: " + date.getHours() + ":" + date.getMinutes() + ":" + ((date.getSeconds() < 10) ? "0" : "") + date.getSeconds();
     console.log(str);
 }
 logCurrentDay();
 
 //2
-function logCurrentDate() {
+function getCurrentDate() {
     var date = new Date();
-    console.log("Current date is: " + date.getDate());
+    return date.getDate();
 }
-logCurrentDate();
+console.log("Current date is: ", getCurrentDate());
 
 //3
 function logAllFirstSundaysOfJanuary() {
@@ -126,18 +105,12 @@ console.log("Inverted string case: ", invertCase("This Word"));
 
 //9
 function removeDuplicates(arr) {
-    var arr2 = [];
     for (var i = 0; i < arr.length; i++) {
         while (arr.indexOf(arr[i], i + 1) > -1) {
-            delete arr[arr.indexOf(arr[i], i + 1)];
+            arr.splice(arr.indexOf(arr[i], i + 1), 1);
         };
     }
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] != undefined) {
-            arr2.push(arr[i]);
-        }
-    }
-    return arr2;
+    return arr;
 }
 console.log("Array without duplicates: ", removeDuplicates([1, 4, 2, 3, 1, 3, 1, 4]));
 
@@ -158,18 +131,18 @@ console.log("Shuffled array: ", shuffle([1, 2, 3, 4, 5, 6, 7, 8]));
 
 //11
 function deleteNulls(arr) {
-    var arr2 = [];
     for (var i = 0; i < arr.length; i++) {
-        if ((arr[i] == null) || (arr[i] == 0) || (arr[i] == "") || !arr[i] || (arr[i] == undefined) || (isNaN(arr[i]))) {
-            delete arr[i];
+        if ((arr[i] == null)
+            || (arr[i] == 0)
+            || (arr[i] == "")
+            || !arr[i]
+            || (arr[i] == undefined)
+            || (isNaN(arr[i]))
+        ) {
+            arr.splice(i, 1);
         }
     }
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] != undefined) {
-            arr2.push(arr[i]);
-        }
-    }
-    return arr2;
+    return arr;
 }
 console.log("No nulls array: ", deleteNulls([0, 1, null, 2, "", 3, false, 4, undefined, 5, NaN]));
 
@@ -181,8 +154,13 @@ var library = [
 ];
 function sortLibrary() {
     function compareElements(a, b) {
-        if (a["title"] > b["title"]) return 1;
-        if (a["title"] < b["title"]) return -1;
+        if (a["title"] > b["title"]) {
+            return 1;
+        } else if (a["title"] < b["title"]) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
     library.sort(compareElements);
     return library;
@@ -198,27 +176,26 @@ function mergeArrays(arr1, arr2) {
             arr3.push(arr2[i]);
         }
     }
-    function sortNum(a, b) {
-        if (a > b) return 1;
-        if (a < b) return -1;
-    };
-    arr3.sort(sortNum);
+    function compareNums(a, b) {
+        if (a > b) {
+            return 1;
+        } else if (a < b) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+    arr3.sort(compareNums);
     return arr3;
 }
 console.log("Merged array: ", mergeArrays([1, 3, 5], [1, 2, 3, 4, 6]));
 
 //14
 function removeE(arr, elem) {
-    var arr2 = [];
     while (arr.indexOf(elem) >= 0) {
-        delete arr[arr.indexOf(elem)];
+        arr.splice(arr.indexOf(elem), 1);
     }
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] != undefined) {
-            arr2.push(arr[i]);
-        }
-    }
-    return arr2;
+    return arr;
 }
 console.log("Removed 3 from array: ", removeE([1, 2, 3, 4, 5, 6], 3));
 
