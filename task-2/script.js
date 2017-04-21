@@ -1,12 +1,19 @@
 "use strict";
 
 function isAllTrue(source, filterFn) {
+    /*
     for (var i = 0; i < source.length; i++) {
         if (!filterFn(source[i])) {
             return false;
         }
     }
     return true;
+    */
+    var i = 0;
+    while ((i < source.length) && filterFn(source[i])) {
+        i++;
+    }
+    return (i == source.length);
 }
 
 function isNumber(val) {
