@@ -9,26 +9,33 @@ var calculator = (function (initialState) {
 
     function reset() {
         curentState = 0;
+        return this;
     }
 
     function add(val) {
         curentState += val;
-        return add;
+        return this;
     }
 
     function substract(val) {
         curentState -= val;
-        return substract;
+        return this;
     }
 
     function multiply(val) {
         curentState *= val;
-        return multiply;
+        return this;
     }
 
     function divide(val) {
         curentState /= val;
-        return divide;
+        return this;
+    }
+
+    function requestServer(callback) {
+        setTimeout(function () {
+            callback()
+        }, 2000);
     }
 
     return {
@@ -37,21 +44,20 @@ var calculator = (function (initialState) {
         add: add,
         substract: substract,
         multiply: multiply,
-        divide: divide
+        divide: divide,
+        requestServer: requestServer
     };
 })(0);
 
-console.log(calculator.getResult());
+console.log(calculator.add(4).reset().add(1).getResult());
 
-calculator.add(4);
-calculator.substract(1);
-console.log(calculator.getResult());
+calculator.requestServer(function () {
+    console.log(calculator.getResult())
+})
 
-calculator.add(4)(4)(1);
-console.log(calculator.getResult());
-
-calculator.substract(2)(2);
-console.log(calculator.getResult());
-
-calculator.reset();
-console.log(calculator.getResult());
+//bind function
+function bind(f, context) {
+    return function() {
+        return f.apply(context, arguments);
+    };
+}
