@@ -1,4 +1,4 @@
-"use strict";
+
 
 var prepend = function(targetSelector, sourceSelector) {
     var sourceElement = document.querySelector(sourceSelector);
@@ -8,5 +8,5 @@ var prepend = function(targetSelector, sourceSelector) {
     document.removeChild(sourceElement);
 }
 
-var button = document.getElementById("relocate");
-button.addEventListener("click", prepend("#target", "#source"));
+var button1 = document.getElementById("button1");
+button1.onclick = function() {prepend("#target","#source")};
