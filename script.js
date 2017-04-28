@@ -1,58 +1,50 @@
-var calculator = (function (initialState) {
-    "use strict";
+"use strict";
 
-    var curentState = initialState;
+function Calculator(initialState) {
+    this.curentState = initialState;
 
-    function getResult() {
-        return curentState;
+    this.getResult = function() {
+        return this.curentState;
     }
 
-    function reset() {
-        curentState = 0;
+    this.reset = function() {
+        this.curentState = 0;
         return this;
     }
 
-    function add(val) {
-        curentState += val;
+    this.add = function(val) {
+        this.curentState += val;
         return this;
     }
 
-    function substract(val) {
-        curentState -= val;
+    this.substract = function(val) {
+        this.curentState -= val;
         return this;
     }
 
-    function multiply(val) {
-        curentState *= val;
+    this.multiply = function(val) {
+        this.curentState *= val;
         return this;
     }
 
-    function divide(val) {
-        curentState /= val;
+    this.divide = function(val) {
+        this.curentState /= val;
         return this;
     }
 
-    function requestServer(callback) {
+    this.requestServer = function(callback) {
         setTimeout(function () {
             callback()
         }, 2000);
     }
+};
 
-    return {
-        getResult: getResult,
-        reset: reset,
-        add: add,
-        substract: substract,
-        multiply: multiply,
-        divide: divide,
-        requestServer: requestServer
-    };
-})(0);
+var calc = new Calculator(0);
 
-console.log(calculator.add(4).reset().add(1).getResult());
+console.log(calc.add(4).reset().add(1).getResult());
 
-calculator.requestServer(function () {
-    console.log(calculator.getResult())
+calc.requestServer(function () {
+    console.log(calc.getResult())
 })
 
 //bind function
