@@ -1,12 +1,16 @@
+"use strict";
 
+document.getElementById("button1").addEventListener("click", function() { prepend("#target","#source") });
 
-var prepend = function(targetSelector, sourceSelector) {
+function prepend(targetSelector, sourceSelector) {
     var sourceElement = document.querySelector(sourceSelector);
     var targetElement = document.querySelector(targetSelector);
+    var prevFirstChild = targetElement.querySelector("*");
 
-    targetElement.appendChild(sourceElement);
-    document.removeChild(sourceElement);
+    if (prevFirstChild != null) {
+        targetElement.insertBefore(sourceElement, prevFirstChild);
+    } else {
+        targetElement.appendChild(sourceElement);
+    }
 }
 
-var button1 = document.getElementById("button1");
-button1.onclick = function() {prepend("#target","#source")};

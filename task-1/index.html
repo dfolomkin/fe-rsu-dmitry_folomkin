@@ -3,12 +3,18 @@
 <head>
 	<title>Title</title>
 	<meta charset="utf-8">
+	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div id="target" style="background-color: #ccc; padding: 10px">Target block</div>
-	
-	<p id="source" style="background-color: #9966cc">Source paragraph</p>
-	
+    <!-- this is target block -->
+	<div id="target" class="div-class">
+		<p>Target block</p>
+		<p class="p-class">Another paragraph</p>
+	</div>
+
+	<!-- this is source paragraph -->
+	<p id="source" class="p-class">Source paragraph</p>
+
 	<button id="button1">Relocate element</button>
 
 	<script src="script.js" language="javascript" type="text/javascript"></script>
