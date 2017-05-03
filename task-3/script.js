@@ -17,7 +17,7 @@
     //change collapse state
     function changeCollapse(item) {
         var itemBody = item.querySelector(".accordion__item-body");
-        var shevron = item.querySelector(".accordion__item-header').querySelector(".fa-chevron-up");
+        var shevron = item.querySelector(".accordion__item-header").querySelector(".fa-chevron-up");
         if (itemBody.classList.contains("accordion__item-body--collapsed")) {
             itemBody.classList.remove("accordion__item-body--collapsed");
             shevron.classList.remove("fa-chevron-up--down");
