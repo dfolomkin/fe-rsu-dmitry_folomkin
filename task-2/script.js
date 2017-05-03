@@ -13,7 +13,7 @@ function deleteTextNodes(elem) {
     }
 }
 
-if (typeof document !== 'undefined') {
+if (typeof document !== "undefined") {
     document.getElementById("button1").addEventListener("click", function () {
         deleteTextNodes(document.body);
     });

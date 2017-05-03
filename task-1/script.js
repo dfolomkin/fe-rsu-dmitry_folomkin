@@ -11,7 +11,7 @@ function prepend(targetSelector, sourceSelector) {
     }
 }
 
-if (typeof document !== 'undefined') {
+if (typeof document !== "undefined") {
     document.getElementById("button1").addEventListener("click", function () {
         prepend("#target", "#source");
     });
