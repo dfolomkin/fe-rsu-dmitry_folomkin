@@ -3,60 +3,67 @@
 function Calculator(initialState) {
     this.curentState = initialState;
 
-	this.setCurrentState = function(state) {
-		this.curentState = state;
-	};
-	
-	var f = this.setCurrentState.bind(this);
-	
-    this.getResult = function() {
+    this.setState = function (state) {
+        this.curentState = state;
+        return this;
+    };
+
+    var setState = this.setState.bind(this);
+
+    this.getResult = function () {
         return this.curentState;
     }
 
-    this.reset = function() {
+    this.reset = function () {
         this.curentState = 0;
         return this;
     }
 
-    this.add = function(val) {
+    this.add = function (val) {
         this.curentState += val;
         return this;
     }
 
-    this.substract = function(val) {
+    this.substract = function (val) {
         this.curentState -= val;
         return this;
     }
 
-    this.multiply = function(val) {
+    this.multiply = function (val) {
         this.curentState *= val;
         return this;
     }
 
-    this.divide = function(val) {
+    this.divide = function (val) {
         this.curentState /= val;
         return this;
     }
 
-    this.requestServer = function(callback) {
+    this.getInitialState = function (callback) {
         setTimeout(function () {
-            f(10);
-			callback();
+            setState(10);
+            callback();
         }, 2000);
     }
 };
 
 var calc = new Calculator(0);
-
 console.log(calc.add(4).reset().add(1).getResult());
+//new setter check
+console.log(calc.setState(20).getResult());
 
-calc.requestServer(function () {
+//server emulation check
+calc.getInitialState(function () {
     console.log(calc.getResult())
 })
 
+//another instance check
+var calc2 = new Calculator(0);
+console.log(calc2.setState(40).getResult());
+
 //bind function
 function bind(f, context) {
-    return function() {
+    return function () {
         return f.apply(context, arguments);
     };
 }
