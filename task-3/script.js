@@ -1,4 +1,6 @@
 ; (function () {
+    "use strict";
+
     if (typeof document !== "undefined") {
         var accordions = document.querySelectorAll(".accordion");
     }
@@ -35,7 +37,7 @@
             }
             //target = itemHeader
             //target.parentElement = accordionItem
-            
+
             if (target.classList.contains("accordion__item-header")) {
                 //collapse prev item if not multiblock
                 if (!target.parentElement.parentElement.classList.contains("accordion--multiblock")) {
@@ -45,7 +47,7 @@
                         if (!itemBody.classList.contains("accordion__item-body--collapsed")) {
                             changeCollapse(accordionItems[j]);
                             break;
-                        }                        
+                        }
                     }
                 }
                 //uncollapse event target
@@ -53,4 +55,4 @@
             }
         });
     }
-} ());
+}());
