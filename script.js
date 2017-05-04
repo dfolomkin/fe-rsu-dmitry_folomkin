@@ -3,6 +3,12 @@
 function Calculator(initialState) {
     this.curentState = initialState;
 
+	this.setCurrentState = function(state) {
+		this.curentState = state;
+	};
+	
+	var f = this.setCurrentState.bind(this);
+	
     this.getResult = function() {
         return this.curentState;
     }
@@ -34,7 +40,8 @@ function Calculator(initialState) {
 
     this.requestServer = function(callback) {
         setTimeout(function () {
-            callback()
+            f(10);
+			callback();
         }, 2000);
     }
 };
