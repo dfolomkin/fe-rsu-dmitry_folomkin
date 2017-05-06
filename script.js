@@ -2,14 +2,14 @@
 
 function Calculator(initialState) {
     this.curentState = initialState;
-
+    /*
     this.setState = function (state) {
         this.curentState = state;
         return this;
     };
 
     var setState = this.setState.bind(this);
-
+    */
     this.getResult = function () {
         return this.curentState;
     }
@@ -41,16 +41,16 @@ function Calculator(initialState) {
 
     this.getInitialState = function (callback) {
         setTimeout(function () {
-            setState(10);
+            this.curentState = 10;
             callback();
-        }, 2000);
+        }.bind(this), 2000);
     }
 };
 
 var calc = new Calculator(0);
 console.log(calc.add(4).reset().add(1).getResult());
 //new setter check
-console.log(calc.setState(20).getResult());
+//console.log(calc.setState(20).getResult());
 
 //server emulation check
 calc.getInitialState(function () {
@@ -58,8 +58,8 @@ calc.getInitialState(function () {
 })
 
 //another instance check
-var calc2 = new Calculator(0);
-console.log(calc2.setState(40).getResult());
+//var calc2 = new Calculator(0);
+//console.log(calc2.setState(40).getResult());
 
 //bind function
 function bind(f, context) {
