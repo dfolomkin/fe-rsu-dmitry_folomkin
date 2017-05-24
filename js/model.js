@@ -1,6 +1,7 @@
 function Model() {
     this.library = null;
     this.onSearchInput = new EventEmitter();
+    this.onRatingSet = new EventEmitter();
 }
 
 Model.prototype.init = function () {
@@ -103,4 +104,28 @@ Model.prototype.filterByRating = function (int) {
         }
     }
     return result;
+}
+
+Model.prototype.getBookByName = function (str) {
+    for (var i = 0; i < this.library.length; i++) {
+        if (this.library[i].title == str) {
+            return this.library[i];
+        }
+    }
+    return false;
+    // var i = 0;
+    // while (library[i].title != str) {
+    //     i++;
+    // }
+    // return library[i] || false;
+}
+
+Model.prototype.getRating = function (book) {
+    return book.rating;
+}
+
+Model.prototype.setBookRating = function (str, int) {
+    if (this.getBookByName(str)) {
+        this.getBookByName(str).rating = int;
+    }    
 }

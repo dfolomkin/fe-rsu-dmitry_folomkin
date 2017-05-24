@@ -11,3 +11,7 @@ Controller.prototype.init = function () {
 Controller.prototype.filterByText = function (str) {
     this.model.filterByText(str);
 }
+
+Controller.prototype.setBookRating = function (str, int) {
+    this.model.setBookRating(str, int);
+};
