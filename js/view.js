@@ -54,7 +54,7 @@ View.prototype.init = function () {
                     that.showLibrary(that.model.getLibrary());
                     break;
                 case 2:
-                    that.controller.filterByRating(5);
+                    that.controller.filterByRating(that.model.STAR_NUMBER);
                     break;
                 case 3:
                     that.showLibrary(that.model.getLibrary());
@@ -63,7 +63,6 @@ View.prototype.init = function () {
                     that.showLibrary(that.model.getLibrary());
                     break;
             }
-
         }
     });
 
