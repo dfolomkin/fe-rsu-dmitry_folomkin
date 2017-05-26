@@ -5,6 +5,7 @@ Element.prototype.previousSiblingsCount = function () {
         count++;
         elem = elem.previousElementSibling;
     }
+    return count;
 }
 
 Node.prototype.removeAllChildren = function () {

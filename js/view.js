@@ -7,19 +7,23 @@ function View(model, controller) {
 }
 
 View.prototype.init = function () {
-    this.showCards(this.model.getLibrary());
+    this.showLibrary(this.model.getLibrary());
 
     var that = this;
+
+
 
     //sibdcribe EventEmitters
 
     this.model.onSearchInput.subscribe(function (lib) {
-        that.showCards(lib);
+        that.showLibrary(lib);
     });
 
-    this.model.onRatingSet.subscribe(function (lib) {
-        that.showCards(lib);
+    this.model.onRatingSet.subscribe(function (book) {
+        that.updateBook(book);
     });
+
+
 
     //add EventListeners
 
@@ -32,9 +36,8 @@ View.prototype.init = function () {
         var target = event.target;
         if (target.classList.contains("fa")) {
             var card = target.parentElement.parentElement.parentElement;
-            var title = card.getElementsByClassName("card__title");
-            var rating = target.previousSiblingsCount() + 1;
-            that.controller.setBookRating(title.innerHTML, rating);
+            var rating = target.parentElement.previousSiblingsCount() + 1;
+            that.controller.setRatingById(card.getAttribute("id"), rating);
         }
     });
 }
@@ -43,26 +46,22 @@ View.prototype.createStars = function (int) {
     var stars = document.createElement("div");
     stars.classList.add("rating-bar");
 
-    for (var i = 0; i < int; i++) {
-        var star = document.createElement("div");
-        star.classList.add("rating-bar__star");
-        stars.appendChild(star);
+    for (var i = 0; i < 5; i++) {
         var icon = document.createElement("i");
         icon.classList.add("fa");
-        icon.classList.add("fa-star");
         icon.setAttribute("aria-hidden", "true");
-        star.appendChild(icon);
-    }
-    for (var i = 0; i < 5 - int; i++) {
         var star = document.createElement("div");
         star.classList.add("rating-bar__star");
-        stars.appendChild(star);
-        var icon = document.createElement("i");
-        icon.classList.add("fa");
-        icon.classList.add("fa-star-o");
-        icon.setAttribute("aria-hidden", "true");
+        if (i < int) {
+            icon.classList.add("fa-star");
+            //star.classList.add("checked");
+        } else {
+            icon.classList.add("fa-star-o");
+            //star.classList.add("unchecked");
+        }
         star.appendChild(icon);
-    }
+        stars.appendChild(star);
+    }    
 
     return stars;
 }
@@ -70,6 +69,7 @@ View.prototype.createStars = function (int) {
 View.prototype.createCard = function (book) {
     var card = document.createElement("div");
     card.classList.add("card");
+    card.setAttribute("id", book.id);
 
     var cardElem = document.createElement("div");
     cardElem.classList.add("card__image");
@@ -92,10 +92,19 @@ View.prototype.createCard = function (book) {
     return card;
 }
 
-View.prototype.showCards = function (lib) {
+View.prototype.showLibrary = function (lib) {
     this.libraryElement.removeAllChildren();
     for (var i = 0; i < lib.length; i++) {
         var card = this.createCard(lib[i]);
         this.libraryElement.appendChild(card);
     }
+}
+
+View.prototype.updateBook = function(book) {
+    var oldCard = document.getElementById(book.id);
+    var nextCard = oldCard.nextElementSibling;
+    this.libraryElement.removeChild(oldCard);
+
+    var newCard = this.createCard(book);
+    this.libraryElement.insertBefore(newCard, nextCard);
 }

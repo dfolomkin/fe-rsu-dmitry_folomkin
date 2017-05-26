@@ -413,13 +413,16 @@ html, body {
     font-size: 11pt;
 
     margin-right: 2px;
+    cursor: pointer;
 }
-/*
-.rating-bar__star:not(:first-child) {
-    margin-left: -2px;
-}
-*/
 
+.rating-bar:hover .rating-bar__star {
+    color: #5cb85c;
+}
+
+.rating-bar__star:hover ~ .rating-bar__star {
+    color: #ffab00;
+}
 
 /* ------------------------------------------- *\
     FOOTER

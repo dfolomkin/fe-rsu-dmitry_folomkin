@@ -7,6 +7,7 @@ function Model() {
 Model.prototype.init = function () {
     this.library = [
         {
+            id: 1,
             title: "Jewels of Nizam",
             author: "Geeta Devi",
             image: "library_03.png",
@@ -14,6 +15,7 @@ Model.prototype.init = function () {
             tags: []
         },
         {
+            id: 2,
             title: "Cakes & Bakes",
             author: "Sanjeev Kapoor",
             image: "library_05.png",
@@ -21,6 +23,7 @@ Model.prototype.init = function () {
             tags: []
         },
         {
+            id: 3,
             title: "Jamie's Kithen",
             author: "Jamie Oliver",
             image: "library_07.png",
@@ -28,6 +31,7 @@ Model.prototype.init = function () {
             tags: []
         },
         {
+            id: 4,
             title: "Inexpensive Family Meals",
             author: "Simon Holst",
             image: "library_09.png",
@@ -35,6 +39,7 @@ Model.prototype.init = function () {
             tags: []
         },
         {
+            id: 5,
             title: "Paleo Slow Cooking",
             author: "Chrissy Gower",
             image: "library_11.png",
@@ -42,6 +47,8 @@ Model.prototype.init = function () {
             tags: []
         },
         {
+            
+            id: 6,
             title: "Cook Like an Italian",
             author: "Tobie Puttock",
             image: "library_19.png",
@@ -49,6 +56,7 @@ Model.prototype.init = function () {
             tags: []
         },
         {
+            id: 11,
             title: "Let's Cook!",
             author: "Heisenberg",
             image: "library_99.png",
@@ -56,6 +64,7 @@ Model.prototype.init = function () {
             tags: []
         },
         {
+            id: 8,
             title: "Jamie Does",
             author: "Jamie Oliver",
             image: "library_22.png",
@@ -63,6 +72,7 @@ Model.prototype.init = function () {
             tags: []
         },
         {
+            id: 9,
             title: "Jamie's Italy",
             author: "Jamie Oliver",
             image: "library_23.png",
@@ -70,6 +80,7 @@ Model.prototype.init = function () {
             tags: []
         },
         {
+            id: 10,
             title: "Vegetables Cookbook",
             author: "Matthew Biggs",
             image: "library_24.png",
@@ -106,26 +117,18 @@ Model.prototype.filterByRating = function (int) {
     return result;
 }
 
-Model.prototype.getBookByName = function (str) {
-    for (var i = 0; i < this.library.length; i++) {
-        if (this.library[i].title == str) {
-            return this.library[i];
-        }
+Model.prototype.getBookById = function (int) {
+    var i = 0;
+    while (this.library[i].id != int) {
+        i++;
     }
-    return false;
-    // var i = 0;
-    // while (library[i].title != str) {
-    //     i++;
-    // }
-    // return library[i] || false;
+    return this.library[i] || false;
 }
 
-Model.prototype.getRating = function (book) {
-    return book.rating;
-}
-
-Model.prototype.setBookRating = function (str, int) {
-    if (this.getBookByName(str)) {
-        this.getBookByName(str).rating = int;
+Model.prototype.setRatingById = function (id, rating) {
+    var book = this.getBookById(id);
+    if (book) {
+        book.rating = rating;
+        this.onRatingSet.notify(book);
     }    
 }
