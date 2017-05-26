@@ -48,7 +48,7 @@ View.prototype.init = function () {
             activeTab.classList.remove("tabs__item--active");
             target.parentElement.classList.add("tabs__item--active");
 
-            var tabNo = target.parentElement.previousSiblingsCount() + 1;
+            var tabNo = target.parentElement.getSiblingsNo();
             switch (tabNo) {
                 case 1:
                     that.showLibrary(that.model.getLibrary());
@@ -71,7 +71,7 @@ View.prototype.init = function () {
         var target = event.target;
         if (target.classList.contains("fa")) {
             var card = target.parentElement.parentElement.parentElement;
-            var rating = target.parentElement.previousSiblingsCount() + 1;
+            var rating = target.parentElement.getSiblingsNo();
 
             that.controller.setRatingById(card.getAttribute("id"), rating);
         }
@@ -82,7 +82,7 @@ View.prototype.createStars = function (int) {
     var stars = document.createElement("div");
     stars.classList.add("rating-bar");
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < this.model.STAR_NUMBER; i++) {
         var icon = document.createElement("i");
         icon.classList.add("fa");
         if (i < int) {

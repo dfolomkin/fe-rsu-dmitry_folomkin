@@ -1,4 +1,6 @@
 function Model() {
+    this.STAR_NUMBER = 5;
+    
     this.library = null;
     this.onSearchInput = new EventEmitter();
     this.onRatingFilter = new EventEmitter();
