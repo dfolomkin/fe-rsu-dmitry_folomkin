@@ -1,7 +1,8 @@
 function Model() {
     this.library = null;
     this.onSearchInput = new EventEmitter();
-    this.onRatingSet = new EventEmitter();
+    this.onRatingFilter = new EventEmitter();
+    this.onRatingSet = new EventEmitter();    
 }
 
 Model.prototype.init = function () {
@@ -47,7 +48,7 @@ Model.prototype.init = function () {
             tags: []
         },
         {
-            
+
             id: 6,
             title: "Cook Like an Italian",
             author: "Tobie Puttock",
@@ -110,11 +111,11 @@ Model.prototype.filterByText = function (str) {
 Model.prototype.filterByRating = function (int) {
     var result = [];
     for (var i = 0; i < this.library.length; i++) {
-        if (library[i].rating == int) {
-            result.push(library[i]);
+        if (this.library[i].rating == int) {
+            result.push(this.library[i]);
         }
     }
-    return result;
+    this.onRatingFilter.notify(result);
 }
 
 Model.prototype.getBookById = function (int) {
@@ -130,5 +131,5 @@ Model.prototype.setRatingById = function (id, rating) {
     if (book) {
         book.rating = rating;
         this.onRatingSet.notify(book);
-    }    
+    }
 }

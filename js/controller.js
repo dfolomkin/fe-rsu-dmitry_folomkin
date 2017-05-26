@@ -12,6 +12,10 @@ Controller.prototype.filterByText = function (str) {
     this.model.filterByText(str);
 }
 
+Controller.prototype.filterByRating = function(int) {
+    this.model.filterByRating(int);
+}
+
 Controller.prototype.setRatingById = function (id, rating) {
     this.model.setRatingById(id, rating);
-};
+}
