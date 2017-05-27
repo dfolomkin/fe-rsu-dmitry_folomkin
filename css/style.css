@@ -174,7 +174,8 @@ html, body {
     padding: 0 15px;
     border: 0;
     border-radius: 4px;    
-    background-color: #f2795a;
+    /*background-color: #f2795a;*/
+    background-color: #5cb85c;
     color: #fff;
     font-weight: 600;
     text-transform: uppercase;    
@@ -183,7 +184,8 @@ html, body {
 }
 
 .add-item-button:hover {
-    background-color: #ec9f8c;
+    /*background-color: #ec9f8c;*/
+    background-color: #70cc70;
 }
 
 
@@ -472,4 +474,108 @@ html, body {
 
 .blue-sky {
     color: #15a4fa;
+}
+
+
+
+/* ------------------------------------------- *\
+    MODAL
+\* ------------------------------------------- */
+.modal {
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    background-color: #eef1f7;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal__header {
+    padding: 10px 15px;
+    font-size: 15pt;
+    color: #4d5775;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal__content {
+    padding: 10px 15px;    
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 15px;    
+    border-top: 1px solid #fff;
+}
+
+.modal__form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.modal__label {    
+    margin-left: 12px;
+    margin-bottom: 2px;
+    color: #78829d;
+}
+
+.modal__input,
+.modal__select {
+    height: 30px;
+    padding: 0 30px 0 10px;
+    border-radius: 23px;
+    border: 1px solid #ddd;
+    color: #4d5775;
+}
+
+.modal__tag-list {
+    margin-bottom: 15px;    
+    flex-wrap: wrap;
+}
+
+.modal__tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 12px;
+    background-color: #97b3ce;
+    color: #fff;
+}
+
+.modal__tag-name {
+    display: inline-block;
+    font-size: 9pt;
+}
+
+.modal__tag-control {
+    display: inline-block;
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+.modal__button {
+    margin-left: 8px;
+    padding: 8px  15px;
+    border-radius: 4px;    
+    background-color: #eef1f7;
+    border: 1px solid #bec1c7;
+    color: #4d5775;    
+    cursor: pointer;
+}
+
+.modal__button:hover {
+    background-color: #ced1d7;
+}
+
+.modal__button-success {
+    background-color: #5cb85c;
+    border: 1px solid #5cb85c;
+    color: #fff;
+}
+
+.modal__button-success:hover {
+    background-color: #70cc70;
+    border: 1px solid #70cc70;
 }
