@@ -80,10 +80,10 @@ View.prototype.init = function () {
                     that.showLibrary(that.model.getLibrary());
                     break;
                 case 2:
-                    that.controller.filterByRating(that.model.STAR_NUMBER);
+                    that.showLibrary(that.model.getLibrary());
                     break;
                 case 3:
-                    that.showLibrary(that.model.getLibrary());
+                    that.controller.filterByRating(that.model.STAR_NUMBER);
                     break;
                 case 4:
                     that.showLibrary(that.model.getLibrary());
@@ -268,7 +268,7 @@ View.prototype.showModal = function (str, book) {
     this.modalElement.style.visibility = "visible";
     this.modalElement.style.transform = "scale(1,1)";
 
-    this.modalTitleElement = str;
+    this.modalTitleElement.innerHTML = str;
 
     this.modalTitleInputElement.value = book.title;
     this.modalAuthorInputElement.value = book.author;

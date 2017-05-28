@@ -18,7 +18,7 @@ Model.prototype.init = function () {
             author: "Geeta Devi",
             image: "library_03.png",
             rating: 5,
-            tags: ["oneoneone", "twotwo"]
+            tags: ["Best of List", "Classic Novels"]
         },
         {
             id: 2,
@@ -26,7 +26,7 @@ Model.prototype.init = function () {
             author: "Sanjeev Kapoor",
             image: "library_05.png",
             rating: 5,
-            tags: []
+            tags: ["Best of List"]
         },
         {
             id: 3,
@@ -34,7 +34,7 @@ Model.prototype.init = function () {
             author: "Jamie Oliver",
             image: "library_07.png",
             rating: 4,
-            tags: []
+            tags: ["Non Fiction"]
         },
         {
             id: 4,
@@ -67,7 +67,7 @@ Model.prototype.init = function () {
             author: "Heisenberg",
             image: "library_99.png",
             rating: 5,
-            tags: []
+            tags: ["Best of List", "Classic Novels", "Non Fiction", "Must Read Titles"]
         },
         {
             id: 8,
