@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
     <link href="css/reset.css" rel="stylesheet" type="text/css">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="css/select-picker.css" rel="stylesheet" type="text/css">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body class="container">
@@ -232,7 +231,7 @@
         <div id="modal" class="modal">
             <div class="modal__header">
                 <div id="modal-title" class="modal__header-title">New book</div>
-                <div class="modal__header-control"><i id="modal-cross-button" class="fa fa-times" aria-hidden="true"></i></div>
+                <div id="modal-cross-button" class="modal__header-control"><i class="fa fa-times" aria-hidden="true"></i></div>
             </div>
             <div class="modal__content">
                 <div class="modal__form-group">
@@ -247,16 +246,34 @@
                     <label for="cover-input" class="modal__label">Cover Image</label>
                     <input id="cover-input" class="modal__input" type="text" placeholder="Enter Cover Image Name">
                 </div>
+
                 <div class="modal__tag-block">
+                    
+                    <!-- tag selector -->
                     <div class="modal__form-group">
-                        <label for="tag-select" class="modal__label">Tags</label>
-                        <select id="tag-select" class="modal__select">
-                            <option class="modal__option">tag 4</option>
-                            <option class="modal__option">tag 5</option>
-                            <option class="modal__option">tag 6</option>
-                        </select>                    
+                        <label for="tag-input" class="modal__label">Tags</label>
+                        <input id="tag-input" class="modal__input modal__tag-input" placeholder="Enter Tag and press Enter">
+                        <div class="modal__input-control modal__input-control-plus"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        <div class="modal__input-control modal__input-control-chevron"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                     </div>
-                    <div class="modal__tag-list">
+                        
+                    <ul id="tag-select" class="modal__tag-select">
+                        <li class="modal__tag-option">
+                            <div class="modal__tag-option-name">tag 3</div>
+                            <div class="modal__tag-option-icon"><i class="fa fa-check" aria-hidden="true"></i></div>
+                        </li>
+                        <li class="modal__tag-option">
+                            <div class="modal__tag-option-name">tag 4</div>
+                            <div class="modal__tag-option-icon"><i class="fa fa-check" aria-hidden="true"></i></div>
+                        </li>
+                        <li class="modal__tag-option">
+                            <div class="modal__tag-option-name">tag 5</div>
+                            <div class="modal__tag-option-icon"><i class="fa fa-check" aria-hidden="true"></i></div>
+                        </li>
+                    </ul>
+                    <!-- end of tag selector -->
+                    
+                    <div class="modal__tag-set">
                         <div class="modal__tag">
                             <div class="modal__tag-name">tag 1</div>
                             <div class="modal__tag-control"><i class="fa fa-times" aria-hidden="true"></i></div>
@@ -269,8 +286,7 @@
                             <div class="modal__tag-name">longname tag 3</div>
                             <div class="modal__tag-control"><i class="fa fa-times" aria-hidden="true"></i></div>
                         </div>
-                    </div>
-                    
+                    </div>                    
                 </div>
             </div>
             <div class="modal__footer">
@@ -281,7 +297,7 @@
     </div>
 
 
-    <script src="js/select-picker.js" language="javascript" type="text/javascript"></script>
+
     <script src="js/utils.js" language="javascript" type="text/javascript"></script>
     <script src="js/eventemitter.js" language="javascript" type="text/javascript"></script>
     <script src="js/model.js" language="javascript" type="text/javascript"></script>    

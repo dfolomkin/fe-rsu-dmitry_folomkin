@@ -358,7 +358,7 @@ html, body {
 .search-bar__input {
     height: 30px;
     padding: 0 30px 0 10px;
-    border-radius: 23px;
+    border-radius: 15px;
     border: 1px solid #ddd;
     color: #78829d;
 }
@@ -522,6 +522,7 @@ html, body {
 }
 
 .modal__form-group {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
@@ -535,21 +536,22 @@ html, body {
 
 .modal__input {
     height: 30px;
-    padding: 0 30px 0 10px;
-    border-radius: 23px;
+    padding: 0 10px 0;
+    border-radius: 20px;
     border: 1px solid #ddd;
     color: #4d5775;
 }
 
-.modal__tag-list {
+.modal__tag-set {
     margin-bottom: 15px;    
     flex-wrap: wrap;
 }
 
 .modal__tag {
     display: inline-block;
-    padding: 5px 10px;
-    border-radius: 12px;
+    height: 22px;
+    padding: 4px 10px;
+    border-radius: 11px;
     background-color: #97b3ce;
     color: #fff;
 }
@@ -567,7 +569,7 @@ html, body {
 
 .modal__button {
     margin-left: 8px;
-    padding: 8px  15px;
+    padding: 8px 15px;
     border-radius: 4px;    
     background-color: #eef1f7;
     border: 1px solid #ced1d7;
@@ -606,4 +608,51 @@ html, body {
     background-color: rgba(0, 0, 0, 0);
     visibility: hidden;
     transition: .2s ease-out;
+}
+
+
+
+/* ------------------------------------------- *\
+    TAG-SELECTOR
+\* ------------------------------------------- */
+.modal__tag-input {
+    padding-right: 46px;
+}
+
+.modal__input-control {
+    position: absolute;
+    top: 23px;
+    color: #78829d;
+    cursor: pointer;
+}
+
+.modal__input-control-plus {
+    right: 34px;
+    font-size: 1.2em;
+}
+
+.modal__input-control-chevron {
+    right: 12px;
+}
+
+.modal__tag-select {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px 0;    
+    background-color: #fff;
+    border: 1px solid #ddd;    
+}
+
+.modal__tag-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    padding: 0 10px 0;
+    color: #4d5775;
+}
+
+.modal__tag-option:hover {
+    background-color: #97b3ce;
+    color: #fff;    
 }
