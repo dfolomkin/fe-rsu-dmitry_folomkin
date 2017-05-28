@@ -5,7 +5,9 @@ function Model() {
     this.onSearchInput = new EventEmitter();
     this.onRatingFilter = new EventEmitter();
     this.onRatingSet = new EventEmitter();
-    this.onBookUpdate = new EventEmitter();    
+    this.onBookUpdate = new EventEmitter();
+
+    this.tags = ["Best of List", "Classic Novels", "Non Fiction", "Must Read Titles"];    
 }
 
 Model.prototype.init = function () {
@@ -143,4 +145,8 @@ Model.prototype.updateBook = function (viewBook) {
         modelBook = viewBook;
         this.onBookUpdate.notify(modelBook);
     }
+}
+
+Model.prototype.getTags = function () {
+    return this.tags;
 }

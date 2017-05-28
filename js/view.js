@@ -117,6 +117,11 @@ View.prototype.init = function () {
     this.modalCrossElement.addEventListener("click", function () {
         that.closeModal();
     });
+
+    
+
+
+
 }
 
 View.prototype.createStars = function (int) {

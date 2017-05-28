@@ -636,23 +636,27 @@ html, body {
 }
 
 .modal__tag-select {
-    display: flex;
-    flex-direction: column;
-    margin: 0 10px 0;    
+    position: absolute;
+    top: 48px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    overflow-y: scroll;
     background-color: #fff;
-    border: 1px solid #ddd;    
+    border-bottom: 1px solid transparent;   
 }
 
 .modal__tag-option {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     height: 30px;
-    padding: 0 10px 0;
+    padding: 8px 10px;
     color: #4d5775;
 }
 
 .modal__tag-option:hover {
     background-color: #97b3ce;
     color: #fff;    
+}
+
+.modal__tag-option-icon {
+    float: right;
 }
