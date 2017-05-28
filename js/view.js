@@ -5,11 +5,19 @@ function View(model, controller) {
     this.libraryElement = document.getElementById("library-content");
     this.searchElement = document.getElementById("search-input");
     this.tabsElement = document.getElementById("library-tabs");
+    
     this.fadeElement = document.getElementById("modal-fade");
-    this.modalElement = document.getElementById("modal");
+    this.modalElement = document.getElementById("modal");    
+    
+    this.modalTitleInputElement = document.getElementById("title-input");
+    this.modalAuthorInputElement = document.getElementById("author-input");
+    this.modalCoverInputElement = document.getElementById("cover-input");
+
     this.modalOkElement = document.getElementById("modal-ok-button");
     this.modalCancelElement = document.getElementById("modal-cancel-button");
     this.modalCrossElement = document.getElementById("modal-cross-button");
+
+    this.book = this.model.getLibrary[0];
 }
 
 View.prototype.init = function () {
@@ -30,7 +38,12 @@ View.prototype.init = function () {
     });
 
     this.model.onRatingSet.subscribe(function (book) {
-        that.updateBook(book);
+        that.updateCard(book);
+    });
+
+    this.model.onBookUpdate.subscribe(function (modelBook) {
+        that.updateCard(modelBook);
+        that.book = modelBook;
     });
 
 
@@ -43,7 +56,7 @@ View.prototype.init = function () {
         that.controller.filterByText(str);
     });
 
-    this.tabsElement.addEventListener("click", function (event) {
+    this.tabsElement.addEventListener("click", function () {
         event.preventDefault();
         
         var target = event.target;        
@@ -82,32 +95,27 @@ View.prototype.init = function () {
 
         if (target.classList.contains("card__image")) {
             var card = target.parentElement;
-            that.showModal("Edit Book", card);
+            that.book = that.model.getBookById(card.getAttribute("id"));
+            that.showModal("Edit Book", that.book);
         }
     });
 
     this.modalOkElement.addEventListener("click", function () {
+        that.book.title = that.modalTitleInputElement.value;
+        that.book.author = that.modalAuthorInputElement.value;
+        that.book.image = that.modalCoverInputElement.value;
 
+        that.controller.updateBook(that.book);
+
+        that.closeModal();
     });
 
     this.modalCancelElement.addEventListener("click", function () {
-        that.fadeElement.style.transition = ".05s ease-in";
-        that.fadeElement.style.backgroundColor = "rgba(0, 0, 0, 0)";
-        that.fadeElement.style.visibility = "hidden";
-        
-        that.modalElement.style.transition = ".05s ease-in";
-        that.modalElement.style.transform = "scale(.5,.5)";
-        that.modalElement.style.visibility = "hidden";        
+        that.closeModal();
     });
 
     this.modalCrossElement.addEventListener("click", function () {
-        that.fadeElement.style.transition = ".05s ease-in";
-        that.fadeElement.style.backgroundColor = "rgba(0, 0, 0, 0)";
-        that.fadeElement.style.visibility = "hidden";
-        
-        that.modalElement.style.transition = ".05s ease-in";
-        that.modalElement.style.transform = "scale(.5,.5)";
-        that.modalElement.style.visibility = "hidden";        
+        that.closeModal();
     });
 }
 
@@ -169,7 +177,7 @@ View.prototype.showLibrary = function (lib) {
     }
 }
 
-View.prototype.updateBook = function (book) {
+View.prototype.updateCard = function (book) {
     var oldCard = document.getElementById(book.id);
     var nextCard = oldCard.nextElementSibling;
     this.libraryElement.removeChild(oldCard);
@@ -178,7 +186,7 @@ View.prototype.updateBook = function (book) {
     this.libraryElement.insertBefore(newCard, nextCard);
 }
 
-View.prototype.showModal = function (modalTitle, card) {
+View.prototype.showModal = function (str, book) {
     this.fadeElement.style.transition = ".2s ease-out";
     this.fadeElement.style.visibility = "visible";
     this.fadeElement.style.backgroundColor = "rgba(0, 0, 0, .8)";
@@ -186,10 +194,21 @@ View.prototype.showModal = function (modalTitle, card) {
     this.modalElement.style.visibility = "visible";
     this.modalElement.style.transform = "scale(1,1)";
 
-    document.getElementById("modal-title").innerHTML = modalTitle;
+    document.getElementById("modal-title").innerHTML = str;
     
-    var book = this.model.getBookById(card.getAttribute("id"));
-    document.getElementById("title-input").value = book.title;
-    document.getElementById("author-input").value = book.author;
-    document.getElementById("cover-input").value = book.image;            
+    this.modalTitleInputElement.value = book.title;
+    this.modalAuthorInputElement.value = book.author;
+    this.modalCoverInputElement.value = book.image;
+
+    //tags draw
+}
+
+View.prototype.closeModal = function () {
+    this.fadeElement.style.transition = ".05s ease-in";
+    this.fadeElement.style.backgroundColor = "rgba(0, 0, 0, 0)";
+    this.fadeElement.style.visibility = "hidden";
+        
+    this.modalElement.style.transition = ".05s ease-in";
+    this.modalElement.style.transform = "scale(.5,.5)";
+    this.modalElement.style.visibility = "hidden";
 }

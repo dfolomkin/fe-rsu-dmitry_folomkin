@@ -19,3 +19,7 @@ Controller.prototype.filterByRating = function(int) {
 Controller.prototype.setRatingById = function (id, rating) {
     this.model.setRatingById(id, rating);
 }
+
+Controller.prototype.updateBook = function (book) {
+    this.model.updateBook(book);
+}

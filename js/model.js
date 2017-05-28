@@ -4,7 +4,8 @@ function Model() {
     this.library = null;
     this.onSearchInput = new EventEmitter();
     this.onRatingFilter = new EventEmitter();
-    this.onRatingSet = new EventEmitter();    
+    this.onRatingSet = new EventEmitter();
+    this.onBookUpdate = new EventEmitter();    
 }
 
 Model.prototype.init = function () {
@@ -133,5 +134,13 @@ Model.prototype.setRatingById = function (id, rating) {
     if (book) {
         book.rating = rating;
         this.onRatingSet.notify(book);
+    }
+}
+
+Model.prototype.updateBook = function (viewBook) {
+    var modelBook = this.getBookById(viewBook.id);
+    if (modelBook) {
+        modelBook = viewBook;
+        this.onBookUpdate.notify(modelBook);
     }
 }
