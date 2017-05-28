@@ -7,7 +7,7 @@ function Model() {
     this.onRatingSet = new EventEmitter();
     this.onBookUpdate = new EventEmitter();
 
-    this.tags = ["Best of List", "Classic Novels", "Non Fiction", "Must Read Titles"];    
+    this.allTags = ["Best of List", "Classic Novels", "Non Fiction", "Must Read Titles"];    
 }
 
 Model.prototype.init = function () {
@@ -18,7 +18,7 @@ Model.prototype.init = function () {
             author: "Geeta Devi",
             image: "library_03.png",
             rating: 5,
-            tags: []
+            tags: ["oneoneone", "twotwo"]
         },
         {
             id: 2,
@@ -147,6 +147,6 @@ Model.prototype.updateBook = function (viewBook) {
     }
 }
 
-Model.prototype.getTags = function () {
-    return this.tags;
+Model.prototype.getAllTags = function () {
+    return this.allTags;
 }
