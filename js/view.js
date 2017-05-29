@@ -232,6 +232,12 @@ View.prototype.init = function () {
     this.addItemElement.addEventListener("click", function () {
         that.showModal("New Book");
     });
+
+    this.fadeElement.addEventListener("click", function () {
+        if (that.modalElement.style.visibility = "visible") {
+            that.closeModal();
+        }
+    });
 }
 
 View.prototype.createStars = function (int) {
