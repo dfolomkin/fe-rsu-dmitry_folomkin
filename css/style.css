@@ -653,6 +653,7 @@ html, body {
     height: 30px;
     padding: 8px 10px;
     color: #4d5775;
+    cursor: pointer;
 }
 
 .modal__tag-option:hover {

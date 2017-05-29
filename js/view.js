@@ -3,7 +3,14 @@ function View(model, controller) {
     this.controller = controller;
 
     //object to send into model
-    this.book = this.model.getLibrary[0];
+    this.book = {
+        id: 0,
+        title: "",
+        author: "",
+        image: "",
+        rating: 0,
+        tags: []
+    };
 
     this.libraryElement = document.getElementById("library-content");
     this.searchElement = document.getElementById("search-input");
@@ -27,6 +34,8 @@ function View(model, controller) {
     this.modalTagSelectElement = document.getElementById("tag-select");
 
     this.modalTagSetElement = document.getElementById("tag-set");
+
+    this.addItemElement = document.getElementById("add-item-button");
 }
 
 View.prototype.init = function () {
@@ -105,7 +114,7 @@ View.prototype.init = function () {
         if (target.classList.contains("card__image")) {
             var card = target.parentElement;
             that.book = that.model.getBookById(card.getAttribute("id"));
-            that.showModal("Edit Book", that.book);
+            that.showModal("Book Editing", that.book);
         }
     });
 
@@ -147,8 +156,14 @@ View.prototype.init = function () {
                 target.parentElement.classList.add("modal__tag-option--checked");
                 
                 var tagBadge = that.createTagBadge(target.innerHTML);
-                that.modalTagSetElement.appendChild(tagBadge);                
-
+                that.modalTagSetElement.appendChild(tagBadge);
+                
+                //delete label "No tags yet"
+                var label = that.modalTagSetElement.getElementsByClassName("modal__label")[0];
+                if (label) {
+                    that.modalTagSetElement.removeChild(label);
+                }
+                
                 that.closeSelect();
             }
         }
@@ -166,7 +181,13 @@ View.prototype.init = function () {
             var tagBadge = that.createTagBadge(target.value);
             that.modalTagSetElement.appendChild(tagBadge);
             target.value = "";
-        }
+
+            //delete label "No tags yet"
+            var label = that.modalTagSetElement.getElementsByClassName("modal__label")[0];
+            if (label) {
+                that.modalTagSetElement.removeChild(label);
+            }
+        }        
     });
 
     this.modalAddTagElement.addEventListener("click", function () {
@@ -186,8 +207,21 @@ View.prototype.init = function () {
                     tagInSelect.parentElement.classList.remove("modal__tag-option--checked");
                 }
             }            
+            
             that.modalTagSetElement.removeChild(target.parentElement.parentElement);
+            
+            //if no tags add label "No tags yet"
+            if (that.modalTagSetElement.children.length == 0) {
+                var message = document.createElement("label");
+                message.classList.add("modal__label");
+                message.innerHTML = "No tags yet";
+                that.modalTagSetElement.appendChild(message);
+            }
         }
+    });
+
+    this.addItemElement.addEventListener("click", function () {
+        that.showModal("New Book");
     });
 }
 
@@ -302,7 +336,8 @@ View.prototype.updateTagSelect = function (allTags, bookTags) {
     
     for (var i = 0; i < allTags.length; i++) {
         var tagOption = document.createElement("li");
-        tagOption.classList.add("modal__tag-option");
+        tagOption.classList.add("modal__tag-option");        
+        
         var bookTagsStr = bookTags.join(", ");
         var allTag = allTags[i];
         if (~bookTagsStr.indexOf(allTag)) {
@@ -339,15 +374,22 @@ View.prototype.showModal = function (str, book) {
 
     this.modalTitleElement.innerHTML = str;
 
-    this.modalTitleInputElement.value = book.title;
-    this.modalAuthorInputElement.value = book.author;
-    this.modalCoverInputElement.value = book.image;
+    if (arguments.length > 1) {
+        this.modalTitleInputElement.value = book.title;
+        this.modalAuthorInputElement.value = book.author;
+        this.modalCoverInputElement.value = book.image;
 
-    var bookTags = this.model.getBookById(book.id).tags;
-    this.updateTagSet(bookTags);
+        var bookTags = this.model.getBookById(book.id).tags;
+        this.updateTagSet(bookTags);
 
-    var allTags = this.model.getAllTags();
-    this.updateTagSelect(allTags, bookTags);
+        var allTags = this.model.getAllTags();
+        this.updateTagSelect(allTags, bookTags);
+    } else {
+        this.updateTagSet([]);
+        
+        var allTags = this.model.getAllTags();
+        this.updateTagSelect(allTags, []);
+    }    
 }
 
 View.prototype.closeModal = function () {
