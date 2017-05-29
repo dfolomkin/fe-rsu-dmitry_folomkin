@@ -1,13 +1,14 @@
 function Model() {
     this.STAR_NUMBER = 5;
-    
+
     this.library = null;
     this.onSearchInput = new EventEmitter();
     this.onRatingFilter = new EventEmitter();
     this.onRatingSet = new EventEmitter();
     this.onBookUpdate = new EventEmitter();
+    this.onBookAdd = new EventEmitter();
 
-    this.allTags = ["Best of List", "Classic Novels", "Non Fiction", "Must Read Titles"];    
+    this.allTags = ["Best of List", "Classic Novels", "Non Fiction", "Must Read Titles"];
 }
 
 Model.prototype.init = function () {
@@ -100,6 +101,10 @@ Model.prototype.getLibrary = function () {
     return this.library;
 }
 
+Model.prototype.getAllTags = function () {
+    return this.allTags;
+}
+
 Model.prototype.filterByText = function (str) {
     var result = [];
     for (var i = 0; i < this.library.length; i++) {
@@ -143,7 +148,7 @@ Model.prototype.updateBook = function (viewBook) {
     var modelBook = this.getBookById(viewBook.id);
     if (modelBook) {
         modelBook = viewBook;
-        
+
         //add new tags into allTag array
         var bookTags = viewBook.tags;
         var allTagsStr = this.allTags.join(", ");
@@ -154,9 +159,22 @@ Model.prototype.updateBook = function (viewBook) {
         }
 
         this.onBookUpdate.notify(modelBook);
-    }    
+    }
 }
 
-Model.prototype.getAllTags = function () {
-    return this.allTags;
+Model.prototype.getId = function () {
+    var newId = 1;
+    for (var i = 0; i < this.library.length; i++) {
+        if (this.library[i].id > newId) {
+            newId = this.library[i].id;
+        }
+    }
+    newId++;
+    return newId;
+}
+
+Model.prototype.addBook = function (book) {
+    this.library.push(book);
+
+    this.onBookAdd.notify(this.library);
 }

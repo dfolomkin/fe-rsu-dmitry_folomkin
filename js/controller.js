@@ -23,3 +23,7 @@ Controller.prototype.setRatingById = function (id, rating) {
 Controller.prototype.updateBook = function (book) {
     this.model.updateBook(book);
 }
+
+Controller.prototype.addBook = function (book) {
+    this.model.addBook(book);
+}

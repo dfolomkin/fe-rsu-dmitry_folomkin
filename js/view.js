@@ -4,11 +4,11 @@ function View(model, controller) {
 
     //object to send into model
     this.book = {
-        id: 0,
-        title: "",
-        author: "",
-        image: "",
-        rating: 0,
+        id: undefined,
+        title: undefined,
+        author: undefined,
+        image: undefined,
+        rating: undefined,
         tags: []
     };
 
@@ -61,7 +61,11 @@ View.prototype.init = function () {
 
     this.model.onBookUpdate.subscribe(function (modelBook) {
         that.updateCard(modelBook);
-        that.book = modelBook;
+        that.book = modelBook;  //don't need this at all, bcs view.book is in actual state since modal save button was pushed
+    });
+
+    this.model.onBookAdd.subscribe(function (lib) {
+        that.showLibrary(lib);
     });
 
 
@@ -129,7 +133,12 @@ View.prototype.init = function () {
             that.book.tags.push(tag);
         }
 
-        that.controller.updateBook(that.book);
+        if (that.book.id > 0) {
+            that.controller.updateBook(that.book);
+        } else {
+            that.book.id = that.model.getId();
+            that.controller.addBook(that.book);
+        }        
 
         that.closeModal();
     });
@@ -187,7 +196,7 @@ View.prototype.init = function () {
             if (label) {
                 that.modalTagSetElement.removeChild(label);
             }
-        }        
+        }
     });
 
     this.modalAddTagElement.addEventListener("click", function () {
@@ -385,6 +394,10 @@ View.prototype.showModal = function (str, book) {
         var allTags = this.model.getAllTags();
         this.updateTagSelect(allTags, bookTags);
     } else {
+        this.modalTitleInputElement.value = "";
+        this.modalAuthorInputElement.value = "";
+        this.modalCoverInputElement.value = "";
+        
         this.updateTagSet([]);
         
         var allTags = this.model.getAllTags();
