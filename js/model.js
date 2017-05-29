@@ -143,8 +143,18 @@ Model.prototype.updateBook = function (viewBook) {
     var modelBook = this.getBookById(viewBook.id);
     if (modelBook) {
         modelBook = viewBook;
+        
+        //add new tags into allTag array
+        var bookTags = viewBook.tags;
+        var allTagsStr = this.allTags.join(", ");
+        for (var i = 0; i < bookTags.length; i++) {
+            if (!~allTagsStr.indexOf(bookTags[i])) {
+                this.allTags.push(bookTags[i]);
+            }
+        }
+
         this.onBookUpdate.notify(modelBook);
-    }
+    }    
 }
 
 Model.prototype.getAllTags = function () {

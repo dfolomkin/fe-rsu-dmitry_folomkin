@@ -640,7 +640,8 @@ html, body {
     position: absolute;
     top: 48px;
     left: 0;
-    width: 100%;    
+    width: 100%;
+    overflow-y: auto;
     background-color: #fff;
     border-bottom: 1px solid transparent;
     transition: .2 ease-out;

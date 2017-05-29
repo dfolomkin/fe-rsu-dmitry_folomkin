@@ -113,7 +113,13 @@ View.prototype.init = function () {
         that.book.title = that.modalTitleInputElement.value;
         that.book.author = that.modalAuthorInputElement.value;
         that.book.image = that.modalCoverInputElement.value;
-        //add tags
+        var tagBages = that.modalTagSetElement.children;
+        that.book.tags = [];
+        for (var i = 0; i < tagBages.length; i++) {
+            var tag = tagBages[i].getElementsByClassName("modal__tag-name")[0].innerHTML;
+            that.book.tags.push(tag);
+        }
+
         that.controller.updateBook(that.book);
 
         that.closeModal();
