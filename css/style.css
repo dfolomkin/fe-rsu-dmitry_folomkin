@@ -282,14 +282,25 @@ html, body {
     margin-bottom: 6px;
 }
 
+.history-block__event b{
+    font-weight: 400;
+    color: #78829d;
+}
+
 .history-block__text-highlight {
     font-weight: 400;
     color: #78829d;
 }
 
 .history-page__item {
+    display: flex;
+    justify-content: flex-start;
     margin-bottom: 10px;
     color: #4d5775;
+}
+
+.history-page__time {    
+    min-width: 140px;
 }
 
 

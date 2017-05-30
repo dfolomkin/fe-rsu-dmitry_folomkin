@@ -12,7 +12,7 @@ Controller.prototype.filterByText = function (str) {
     this.model.filterByText(str);
 }
 
-Controller.prototype.filterByRating = function(int) {
+Controller.prototype.filterByRating = function (int) {
     this.model.filterByRating(int);
 }
 

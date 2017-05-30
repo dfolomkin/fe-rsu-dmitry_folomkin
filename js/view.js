@@ -48,7 +48,7 @@ View.prototype.init = function () {
 
     setInterval(function () {
         that.updateHistoryTimers();
-     }, 60000);    
+    }, 60000);
 
 
 
@@ -100,7 +100,7 @@ View.prototype.init = function () {
 
                     //***************************************************************************************** history
                     var tabName = target.parentElement.parentElement.children[tabNo - 1].getElementsByClassName("tabs__link")[0].innerHTML;
-                    var message = "You switched to " + tabName + " tab";
+                    var message = "You switched to <b>" + tabName + "</b> tab";
                     that.updateHistoryBlock(message, new Date());
                     that.controller.addHistory(message, new Date());
 
@@ -113,7 +113,7 @@ View.prototype.init = function () {
 
                     //***************************************************************************************** history
                     var tabName = target.parentElement.parentElement.children[tabNo - 1].getElementsByClassName("tabs__link")[0].innerHTML;
-                    var message = "You switched to " + tabName + " tab";
+                    var message = "You switched to <b>" + tabName + "</b> tab";
                     that.updateHistoryBlock(message, new Date());
                     that.controller.addHistory(message, new Date());
 
@@ -134,7 +134,7 @@ View.prototype.init = function () {
             that.controller.setRatingById(card.getAttribute("id"), rating);
 
             //***************************************************************************************** history
-            var message = "You changed raing of book #" + card.getAttribute("id") + " to " + rating + " stars";
+            var message = "You changed raing of book <b>#" + card.getAttribute("id") + "</b> to <b>" + rating + "</b> stars";
             that.updateHistoryBlock(message, new Date());
             that.controller.addHistory(message, new Date());
         }
@@ -145,7 +145,7 @@ View.prototype.init = function () {
             that.showModal("Book Editing", that.book);
 
             //***************************************************************************************** history
-            var message = "You desided to edit book #" + that.book.id + " " + that.book.title + " by " + that.book.author;
+            var message = "You desided to edit book <b>#" + that.book.id + "</b>: <b>" + that.book.title + "</b> by <b>" + that.book.author + "</b>";
             that.updateHistoryBlock(message, new Date());
             that.controller.addHistory(message, new Date());
         }
@@ -165,14 +165,14 @@ View.prototype.init = function () {
         if (that.book.id > 0) {
             that.controller.updateBook(that.book);
             //***************************************************************************************** history
-            var message = "You updated book #" + that.book.id + " as " + that.book.title + ", " + that.book.author + ", " + that.book.image + ", " + that.book.tags.toString();
+            var message = "You updated book <b>#" + that.book.id + "</b> as <b>" + that.book.title + "</b>, <b>" + that.book.author + "</b>, <b>" + that.book.image + "</b>, <b>" + that.book.tags.toString() + "</b>";
             that.updateHistoryBlock(message, new Date());
             that.controller.addHistory(message, new Date());
         } else {
             that.book.id = that.model.getId();
             that.controller.addBook(that.book);
             //***************************************************************************************** history
-            var message = "You added book #" + that.book.id + " as " + that.book.title + ", " + that.book.author + ", " + that.book.image + ", " + that.book.tags.toString();
+            var message = "You added book <b>#" + that.book.id + "</b> as <b>" + that.book.title + "</b>, <b>" + that.book.author + "</b>, <b>" + that.book.image + "</b>, <b>" + that.book.tags.toString() + "</b>";
             that.updateHistoryBlock(message, new Date());
             that.controller.addHistory(message, new Date());
         }
@@ -572,7 +572,18 @@ View.prototype.showAllHistory = function () {
     for (var i = 0; i < hist.length; i++) {
         var item = document.createElement("div");
         item.classList.add("history-page__item");
-        item.innerHTML = hist[i].time.toLocaleString("en-GB") + "&emsp;" + hist[i].message;
+
+        var timeEl = document.createElement("div");
+        timeEl.classList.add("history-page__time");
+        timeEl.innerHTML = hist[i].time.toLocaleString("en-GB");
+
+        var eventEl = document.createElement("div");
+        eventEl.classList.add("history-page__event");
+        eventEl.innerHTML = hist[i].message;
+
+        item.appendChild(timeEl);
+        item.appendChild(eventEl);
+
         this.libraryElement.insertBefore(item, this.libraryElement.firstElementChild);
     }
 }
