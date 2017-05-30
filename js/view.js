@@ -18,7 +18,7 @@ function View(model, controller) {
     this.tabsElement = document.getElementById("library-tabs");
 
     this.fadeElement = document.getElementById("modal-fade");
-    
+
     this.modalElement = document.getElementById("modal");
     this.modalTitleElement = document.getElementById("modal-title");
     this.modalOkElement = document.getElementById("modal-ok-button");
@@ -38,13 +38,17 @@ function View(model, controller) {
 
     this.addItemElement = document.getElementById("add-item-button");
 
-    this.historyBlockElement = document.getElementById("history-block");    
+    this.historyBlockElement = document.getElementById("history-block");
 }
 
 View.prototype.init = function () {
+    var that = this;
+
     this.showLibrary(this.model.getLibrary());
 
-    var that = this;
+    setInterval(function () {
+        that.updateHistoryTimers();
+     }, 60000);    
 
 
 
@@ -93,12 +97,26 @@ View.prototype.init = function () {
             switch (tabNo) {
                 case 1:
                     that.showLibrary(that.model.getLibrary());
+
+                    //***************************************************************************************** history
+                    var tabName = target.parentElement.parentElement.children[tabNo - 1].getElementsByClassName("tabs__link")[0].innerHTML;
+                    var message = "You switched to " + tabName + " tab";
+                    that.updateHistoryBlock(message, new Date());
+                    that.controller.addHistory(message, new Date());
+
                     break;
                 case 2:
                     that.showLibrary(that.model.getLibrary());
                     break;
                 case 3:
                     that.controller.filterByRating(that.model.STAR_NUMBER);
+
+                    //***************************************************************************************** history
+                    var tabName = target.parentElement.parentElement.children[tabNo - 1].getElementsByClassName("tabs__link")[0].innerHTML;
+                    var message = "You switched to " + tabName + " tab";
+                    that.updateHistoryBlock(message, new Date());
+                    that.controller.addHistory(message, new Date());
+
                     break;
                 case 4:
                     that.showLibrary(that.model.getLibrary());
@@ -114,16 +132,22 @@ View.prototype.init = function () {
             var rating = target.parentElement.getSiblingsNo();
 
             that.controller.setRatingById(card.getAttribute("id"), rating);
-            
-            //history
-            that.updateHistoryBlock("new message", new Date());
-            that.controller.addHistory("new message", new Date());
+
+            //***************************************************************************************** history
+            var message = "You changed raing of book #" + card.getAttribute("id") + " to " + rating + " stars";
+            that.updateHistoryBlock(message, new Date());
+            that.controller.addHistory(message, new Date());
         }
 
         if (target.classList.contains("card__image")) {
             var card = target.parentElement;
             that.book = that.model.getBookById(card.getAttribute("id"));
             that.showModal("Book Editing", that.book);
+
+            //***************************************************************************************** history
+            var message = "You desided to edit book #" + that.book.id + " " + that.book.title + " by " + that.book.author;
+            that.updateHistoryBlock(message, new Date());
+            that.controller.addHistory(message, new Date());
         }
     });
 
@@ -140,10 +164,18 @@ View.prototype.init = function () {
 
         if (that.book.id > 0) {
             that.controller.updateBook(that.book);
+            //***************************************************************************************** history
+            var message = "You updated book #" + that.book.id + " as " + that.book.title + ", " + that.book.author + ", " + that.book.image + ", " + that.book.tags.toString();
+            that.updateHistoryBlock(message, new Date());
+            that.controller.addHistory(message, new Date());
         } else {
             that.book.id = that.model.getId();
             that.controller.addBook(that.book);
-        }        
+            //***************************************************************************************** history
+            var message = "You added book #" + that.book.id + " as " + that.book.title + ", " + that.book.author + ", " + that.book.image + ", " + that.book.tags.toString();
+            that.updateHistoryBlock(message, new Date());
+            that.controller.addHistory(message, new Date());
+        }
 
         that.closeModal();
     });
@@ -168,16 +200,16 @@ View.prototype.init = function () {
                 that.closeSelect();
             } else {
                 target.parentElement.classList.add("modal__tag-option--checked");
-                
+
                 var tagBadge = that.createTagBadge(target.innerHTML);
                 that.modalTagSetElement.appendChild(tagBadge);
-                
+
                 //delete label "No tags yet"
                 var label = that.modalTagSetElement.getElementsByClassName("modal__label")[0];
                 if (label) {
                     that.modalTagSetElement.removeChild(label);
                 }
-                
+
                 that.closeSelect();
             }
         }
@@ -221,10 +253,10 @@ View.prototype.init = function () {
                 if (tagInSelect.innerHTML == tagInSet.innerHTML) {
                     tagInSelect.parentElement.classList.remove("modal__tag-option--checked");
                 }
-            }            
-            
+            }
+
             that.modalTagSetElement.removeChild(target.parentElement.parentElement);
-            
+
             //if no tags add label "No tags yet"
             if (that.modalTagSetElement.children.length == 0) {
                 var message = document.createElement("label");
@@ -237,6 +269,11 @@ View.prototype.init = function () {
 
     this.addItemElement.addEventListener("click", function () {
         that.showModal("New Book");
+
+        //***************************************************************************************** history
+        var message = "You desided to add new book";
+        that.updateHistoryBlock(message, new Date());
+        that.controller.addHistory(message, new Date());
     });
 
     this.fadeElement.addEventListener("click", function () {
@@ -334,6 +371,9 @@ View.prototype.createCard = function (book) {
 
 View.prototype.showLibrary = function (lib) {
     this.libraryElement.removeAllChildren();
+    this.libraryElement.style.display = "flex";
+    this.libraryElement.style.flexWrap = "wrap";
+
     for (var i = 0; i < lib.length; i++) {
         var card = this.createCard(lib[i]);
         this.libraryElement.appendChild(card);
@@ -390,17 +430,17 @@ View.prototype.updateTagSet = function (tags) {
 
 View.prototype.updateTagSelect = function (allTags, bookTags) {
     this.modalTagSelectElement.removeAllChildren();
-    
+
     for (var i = 0; i < allTags.length; i++) {
         var tagOption = document.createElement("li");
-        tagOption.classList.add("modal__tag-option");        
-        
+        tagOption.classList.add("modal__tag-option");
+
         var bookTagsStr = bookTags.join(", ");
         var allTag = allTags[i];
         if (~bookTagsStr.indexOf(allTag)) {
             tagOption.classList.add("modal__tag-option--checked");
         }
-        
+
         var tagOptionIcon = document.createElement("div");
         tagOptionIcon.classList.add("modal__tag-option-icon");
 
@@ -445,12 +485,12 @@ View.prototype.showModal = function (str, book) {
         this.modalTitleInputElement.value = "";
         this.modalAuthorInputElement.value = "";
         this.modalCoverInputElement.value = "";
-        
+
         this.updateTagSet([]);
-        
+
         var allTags = this.model.getAllTags();
         this.updateTagSelect(allTags, []);
-    }    
+    }
 }
 
 View.prototype.closeModal = function () {
@@ -502,24 +542,39 @@ View.prototype.updateHistoryBlock = function (message, time) {
     content.appendChild(timeEl);
     item.appendChild(iconWrap);
     item.appendChild(content);
-    
+
+    item.setAttribute("since", time.getTime());
+
     this.historyBlockElement.insertBefore(item, this.historyBlockElement.firstElementChild);
     if (this.historyBlockElement.children.length > this.model.HISTORY_BLOCK_LENGTH) {
         this.historyBlockElement.removeChild(this.historyBlockElement.lastElementChild);
     }
-    
+
     item.style.visibility = "visible";
     item.style.maxHeight = "500px";
 }
 
 View.prototype.showAllHistory = function () {
     this.libraryElement.removeAllChildren();
-    
+    this.libraryElement.style.display = "block";
+    this.libraryElement.style.flexWrap = null;
+
     var hist = this.model.getAllHistory();
     for (var i = 0; i < hist.length; i++) {
         var item = document.createElement("div");
         item.classList.add("history-page__item");
-        item.innerHTML = hist[i].time.toLocaleString("en-GB") + "  " + hist[i].message;
-        this.libraryElement.appendChild(item);
+        item.innerHTML = hist[i].time.toLocaleString("en-GB") + "&emsp;" + hist[i].message;
+        this.libraryElement.insertBefore(item, this.libraryElement.firstElementChild);
+    }
+}
+
+View.prototype.updateHistoryTimers = function () {
+    var items = this.historyBlockElement.children;
+    for (var i = 0; i < items.length; i++) {
+        var createTime = items[i].getAttribute("since");
+        var currentTime = new Date().getTime();
+        var agoTime = Math.floor((currentTime - createTime) / 1000) / 60;
+        var histTime = items[i].getElementsByClassName("history-block__content")[0].getElementsByClassName("history-block__time")[0];
+        histTime.innerHTML = agoTime + " minutes ago";
     }
 }

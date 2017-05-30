@@ -199,8 +199,7 @@ html, body {
 }
 
 .nav__item {    
-    height: 38px;
-    padding: 12px 20px;
+    height: 38px;    
     cursor: pointer;
 }
 
@@ -209,6 +208,10 @@ html, body {
 }
 
 .nav__link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 12px 20px;
     color: #78829d;
     text-decoration: none;
 }
@@ -276,12 +279,17 @@ html, body {
 }
 
 .history-block__event {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .history-block__text-highlight {
     font-weight: 400;
     color: #78829d;
+}
+
+.history-page__item {
+    margin-bottom: 10px;
+    color: #4d5775;
 }
 
 
@@ -685,11 +693,4 @@ html, body {
 
 .modal__tag-option--checked:hover .modal__tag-option-icon{
     color: #fff;
-}
-
-
-
-.history-page__item {
-    margin-bottom: 10px;
-    color: #4d5775;
 }
