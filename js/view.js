@@ -12,6 +12,7 @@ function View(model, controller) {
         tags: []
     };
 
+    this.mainNavElement = document.getElementById("main-nav");
     this.libraryElement = document.getElementById("library-content");
     this.searchElement = document.getElementById("search-input");
     this.tabsElement = document.getElementById("library-tabs");
@@ -36,6 +37,8 @@ function View(model, controller) {
     this.modalTagSetElement = document.getElementById("tag-set");
 
     this.addItemElement = document.getElementById("add-item-button");
+
+    this.historyBlockElement = document.getElementById("history-block");    
 }
 
 View.prototype.init = function () {
@@ -80,9 +83,7 @@ View.prototype.init = function () {
 
     this.tabsElement.addEventListener("click", function () {
         event.preventDefault();
-
         var target = event.target;
-
         if (target.parentElement.classList.contains("tabs__item")) {
             var activeTab = that.tabsElement.getElementsByClassName("tabs__item--active")[0];
             activeTab.classList.remove("tabs__item--active");
@@ -113,6 +114,10 @@ View.prototype.init = function () {
             var rating = target.parentElement.getSiblingsNo();
 
             that.controller.setRatingById(card.getAttribute("id"), rating);
+            
+            //history
+            that.updateHistoryBlock("new message", new Date());
+            that.controller.addHistory("new message", new Date());
         }
 
         if (target.classList.contains("card__image")) {
@@ -179,6 +184,7 @@ View.prototype.init = function () {
     });
 
     this.modalElement.addEventListener("click", function () {
+        event.stopPropagation();
         if (that.modalTagSelectElement.style.visibility = "visible") {
             that.closeSelect();
         }
@@ -234,8 +240,44 @@ View.prototype.init = function () {
     });
 
     this.fadeElement.addEventListener("click", function () {
+        var target = event.target;
         if (that.modalElement.style.visibility = "visible") {
+            if (that.modalTagSelectElement.style.visibility = "visible") {
+                that.closeSelect();
+            }
             that.closeModal();
+        }
+    });
+
+    this.mainNavElement.addEventListener("click", function () {
+        event.preventDefault();
+        var target = event.target;
+        if (target.parentElement.classList.contains("nav__item")) {
+            var activePage = that.mainNavElement.getElementsByClassName("nav__item--active")[0];
+            activePage.classList.remove("nav__item--active");
+            target.parentElement.classList.add("nav__item--active");
+
+            var pageNo = target.parentElement.getSiblingsNo();
+            switch (pageNo) {
+                case 1:
+                    that.showLibrary(that.model.getLibrary());
+                    break;
+                case 2:
+                    that.showLibrary(that.model.getLibrary());
+                    break;
+                case 3:
+                    that.showLibrary(that.model.getLibrary());
+                    break;
+                case 4:
+                    that.showLibrary(that.model.getLibrary());
+                    break;
+                case 5:
+                    that.showLibrary(that.model.getLibrary());
+                    break;
+                case 6:
+                    that.showAllHistory();
+                    break;
+            }
         }
     });
 }
@@ -365,7 +407,7 @@ View.prototype.updateTagSelect = function (allTags, bookTags) {
         var icon = document.createElement("i");
         icon.classList.add("fa");
         icon.classList.add("fa-check");
-        icon.setAttribute("aria-hidden", "true");        
+        icon.setAttribute("aria-hidden", "true");
 
         var tagOptionName = document.createElement("div");
         tagOptionName.classList.add("modal__tag-option-name");
@@ -431,4 +473,53 @@ View.prototype.closeSelect = function () {
     this.modalTagSelectElement.style.transition = ".2s ease-in";
     this.modalTagSelectElement.style.height = "0";
     this.modalTagSelectElement.style.visibility = "hidden";
+}
+
+//system messages
+View.prototype.updateHistoryBlock = function (message, time) {
+    var item = document.createElement("li");
+    item.classList.add("history-block__item");
+
+    var iconWrap = document.createElement("div");
+    iconWrap.classList.add("history-block__icon");
+    var icon = document.createElement("i");
+    icon.classList.add("fa");
+    icon.classList.add("fa-clock-o");
+    icon.setAttribute("aria-hidden", "true");
+
+    var content = document.createElement("div");
+    content.classList.add("history-block__content");
+
+    var eventEl = document.createElement("div");
+    eventEl.classList.add("history-block__event");
+    eventEl.innerHTML = message;
+    var timeEl = document.createElement("div");
+    timeEl.classList.add("history-block__time");
+    timeEl.innerHTML = "0 minutes ago";
+
+    iconWrap.appendChild(icon);
+    content.appendChild(eventEl);
+    content.appendChild(timeEl);
+    item.appendChild(iconWrap);
+    item.appendChild(content);
+    
+    this.historyBlockElement.insertBefore(item, this.historyBlockElement.firstElementChild);
+    if (this.historyBlockElement.children.length > this.model.HISTORY_BLOCK_LENGTH) {
+        this.historyBlockElement.removeChild(this.historyBlockElement.lastElementChild);
+    }
+    
+    item.style.visibility = "visible";
+    item.style.maxHeight = "500px";
+}
+
+View.prototype.showAllHistory = function () {
+    this.libraryElement.removeAllChildren();
+    
+    var hist = this.model.getAllHistory();
+    for (var i = 0; i < hist.length; i++) {
+        var item = document.createElement("div");
+        item.classList.add("history-page__item");
+        item.innerHTML = hist[i].time.toLocaleString("en-GB") + "  " + hist[i].message;
+        this.libraryElement.appendChild(item);
+    }
 }

@@ -1,14 +1,16 @@
 function Model() {
     this.STAR_NUMBER = 5;
+    this.HISTORY_BLOCK_LENGTH = 10;
 
-    this.library = null;
+    this.library = [];
     this.onSearchInput = new EventEmitter();
     this.onRatingFilter = new EventEmitter();
     this.onRatingSet = new EventEmitter();
     this.onBookUpdate = new EventEmitter();
     this.onBookAdd = new EventEmitter();
 
-    this.allTags = ["Best of List", "Classic Novels", "Non Fiction", "Must Read Titles"];
+    this.allTags = [];
+    this.allHistory = [];
 }
 
 Model.prototype.init = function () {
@@ -95,6 +97,15 @@ Model.prototype.init = function () {
             tags: []
         }
     ];
+
+    this.allTags = ["Best of List", "Classic Novels", "Non Fiction", "Must Read Titles"];
+
+    this.allHistory = [
+        {
+            time: new Date(),
+            message: "initialization"
+        }
+    ];
 }
 
 Model.prototype.getLibrary = function () {
@@ -177,4 +188,16 @@ Model.prototype.addBook = function (book) {
     this.library.push(book);
 
     this.onBookAdd.notify(this.library);
+}
+
+Model.prototype.addHistory = function (message, time) {
+    var record = {
+        time: time,
+        message: message
+    }
+    this.allHistory.push(record);
+}
+
+Model.prototype.getAllHistory = function () {
+    return this.allHistory;
 }

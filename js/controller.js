@@ -27,3 +27,7 @@ Controller.prototype.updateBook = function (book) {
 Controller.prototype.addBook = function (book) {
     this.model.addBook(book);
 }
+
+Controller.prototype.addHistory = function (message, time) {
+    this.model.addHistory(message, time);
+}

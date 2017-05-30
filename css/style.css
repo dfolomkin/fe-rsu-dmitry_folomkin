@@ -247,19 +247,32 @@ html, body {
 
 
 
-.history-block {
-    display: flex;
-    align-items: flex-start;
+.history-block {        
+    height: 160px;
+    overflow-y: hidden;
     margin-bottom: 10px;
-    color: #41495e;
     font-size: 9pt;
     font-weight: 100;
+    color: #41495e;
+}
+
+.history-block__item {
+    display: flex;
+    transition: .5s ease-out;
+    visibility: hidden;
+    max-height: 0;
+}
+
+.history-block__item:not(:last-child) {
+    margin-bottom: 10px;
 }
 
 .history-block__icon {
-    margin-right: 10px;
-    color: #78829d;
-    font-size: 12pt;    
+    float: left;
+    height: 100%;
+    margin-right: 8px;
+    font-size: 12pt; 
+    color: #78829d;       
 }
 
 .history-block__event {
@@ -672,4 +685,11 @@ html, body {
 
 .modal__tag-option--checked:hover .modal__tag-option-icon{
     color: #fff;
+}
+
+
+
+.history-page__item {
+    margin-bottom: 10px;
+    color: #4d5775;
 }

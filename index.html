@@ -29,7 +29,7 @@
             </div>
             
             <div class="aside-block aside-block--nav">
-                <ul class="nav">
+                <ul id="main-nav" class="nav">
                     <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-book" aria-hidden="true"></i>&ensp;Now Reading</a></li>
                     <li class="nav__item nav__item--active"><a href="" class="nav__link"><i class="fa fa-globe" aria-hidden="true"></i>&ensp;Browse</a></li>
                     <li class="nav__item"><a href="" class="nav__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&ensp;Buy Books</a></li>
@@ -50,20 +50,22 @@
             </div>
             
             <div class="aside-block aside-block--general">
-                <div class="history-block">
-                    <div class="history-block__icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
-                    <div>
-                        <div class="history-block__event">You added <span class="history-block__text-highlight">Fight Club</span> by <span class="history-block__text-highlight">Chuck Palahniuk</span> to your <span class="history-block__text-highlight">Must Read Titles</span>.</div>
-                        <div class="history-block__datetime">24 minutes ago</div>
-                    </div>                                   
-                </div>
-                <div class="history-block">
-                    <div class="history-block__icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
-                    <div>
-                        <div class="history-block__event">You added <span class="history-block__text-highlight">the Trial</span> by <span class="history-block__text-highlight">Franz Kafka</span> to your <span class="history-block__text-highlight">Must Read Titles</span>.</div>
-                        <div class="history-block__datetime">48 minutes ago</div>
-                    </div>                                   
-                </div>
+                <ul id="history-block" class="history-block">
+                    <li class="history-block__item">
+                        <div class="history-block__icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                        <div class="history-block__content">
+                            <div class="history-block__event">You added <span class="history-block__text-highlight">Fight Club</span> by <span class="history-block__text-highlight">Chuck Palahniuk</span> to your <span class="history-block__text-highlight">Must Read Titles</span>.</div>
+                            <div class="history-block__time">24 minutes ago</div>
+                        </div>
+                    </li>
+                    <li class="history-block__item">
+                        <div class="history-block__icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                        <div class="history-block__content">
+                            <div class="history-block__event">You added <span class="history-block__text-highlight">the Trial</span> by <span class="history-block__text-highlight">Franz Kafka</span> to your <span class="history-block__text-highlight">Must Read Titles</span>.</div>
+                            <div class="history-block__time">48 minutes ago</div>
+                        </div>
+                    </li>                                   
+                </ul>                
             </div>
         </aside>
         
