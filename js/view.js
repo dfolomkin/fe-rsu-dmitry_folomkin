@@ -155,7 +155,7 @@ View.prototype.init = function () {
         that.book.title = that.modalTitleInputElement.value;
         that.book.author = that.modalAuthorInputElement.value;
         that.book.image = that.modalCoverInputElement.value;
-        var tagBages = that.modalTagSetElement.children;
+        var tagBages = that.modalTagSetElement.getElementsByClassName("modal__tag");
         that.book.tags = [];
         for (var i = 0; i < tagBages.length; i++) {
             var tag = tagBages[i].getElementsByClassName("modal__tag-name")[0].innerHTML;
@@ -268,6 +268,15 @@ View.prototype.init = function () {
     });
 
     this.addItemElement.addEventListener("click", function () {
+        //this sh!t is very important
+        that.book = {
+            id: undefined,
+            title: undefined,
+            author: undefined,
+            image: undefined,
+            rating: undefined,
+            tags: []
+        };
         that.showModal("New Book");
 
         //***************************************************************************************** history
@@ -573,7 +582,7 @@ View.prototype.updateHistoryTimers = function () {
     for (var i = 0; i < items.length; i++) {
         var createTime = items[i].getAttribute("since");
         var currentTime = new Date().getTime();
-        var agoTime = Math.floor((currentTime - createTime) / 1000) / 60;
+        var agoTime = Math.floor(Math.floor((currentTime - createTime) / 1000) / 60);
         var histTime = items[i].getElementsByClassName("history-block__content")[0].getElementsByClassName("history-block__time")[0];
         histTime.innerHTML = agoTime + " minutes ago";
     }
