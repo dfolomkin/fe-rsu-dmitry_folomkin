@@ -8,6 +8,10 @@ Controller.prototype.init = function () {
     this.view.init();
 }
 
+Controller.prototype.getLibrary = function () {
+    this.model.getLibrary();
+}
+
 Controller.prototype.filterByText = function (str) {
     this.model.filterByText(str);
 }

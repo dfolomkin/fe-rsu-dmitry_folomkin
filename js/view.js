@@ -44,7 +44,7 @@ function View(model, controller) {
 View.prototype.init = function () {
     var that = this;
 
-    this.showLibrary(this.model.getLibrary());
+    this.controller.getLibrary();
 
     setInterval(function () {
         that.updateHistoryTimers();
@@ -53,6 +53,9 @@ View.prototype.init = function () {
 
 
     //sibdcribe EventEmitters
+    this.model.onGetLibrary.subscribe(function (lib) {
+        that.showLibrary(lib);
+    });
 
     this.model.onSearchInput.subscribe(function (lib) {
         that.showLibrary(lib);

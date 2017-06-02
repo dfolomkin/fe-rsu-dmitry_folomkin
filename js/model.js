@@ -3,6 +3,7 @@ function Model() {
     this.HISTORY_BLOCK_LENGTH = 10;
 
     this.library = [];
+    this.onGetLibrary = new EventEmitter();
     this.onSearchInput = new EventEmitter();
     this.onRatingFilter = new EventEmitter();
     this.onRatingSet = new EventEmitter();
@@ -14,90 +15,6 @@ function Model() {
 }
 
 Model.prototype.init = function () {
-    this.library = [
-        {
-            id: 1,
-            title: "Jewels of Nizam",
-            author: "Geeta Devi",
-            image: "library_03.png",
-            rating: 5,
-            tags: ["Best of List", "Classic Novels"]
-        },
-        {
-            id: 2,
-            title: "Cakes & Bakes",
-            author: "Sanjeev Kapoor",
-            image: "library_05.png",
-            rating: 5,
-            tags: ["Best of List"]
-        },
-        {
-            id: 3,
-            title: "Jamie's Kithen",
-            author: "Jamie Oliver",
-            image: "library_07.png",
-            rating: 4,
-            tags: ["Non Fiction"]
-        },
-        {
-            id: 4,
-            title: "Inexpensive Family Meals",
-            author: "Simon Holst",
-            image: "library_09.png",
-            rating: 4,
-            tags: []
-        },
-        {
-            id: 5,
-            title: "Paleo Slow Cooking",
-            author: "Chrissy Gower",
-            image: "library_11.png",
-            rating: 4,
-            tags: []
-        },
-        {
-
-            id: 6,
-            title: "Cook Like an Italian",
-            author: "Tobie Puttock",
-            image: "library_19.png",
-            rating: 4,
-            tags: []
-        },
-        {
-            id: 11,
-            title: "Let's Cook!",
-            author: "Heisenberg",
-            image: "library_99.png",
-            rating: 5,
-            tags: ["Best of List", "Classic Novels", "Non Fiction", "Must Read Titles"]
-        },
-        {
-            id: 8,
-            title: "Jamie Does",
-            author: "Jamie Oliver",
-            image: "library_22.png",
-            rating: 4,
-            tags: []
-        },
-        {
-            id: 9,
-            title: "Jamie's Italy",
-            author: "Jamie Oliver",
-            image: "library_23.png",
-            rating: 5,
-            tags: []
-        },
-        {
-            id: 10,
-            title: "Vegetables Cookbook",
-            author: "Matthew Biggs",
-            image: "library_24.png",
-            rating: 3,
-            tags: []
-        }
-    ];
-
     this.allTags = ["Best of List", "Classic Novels", "Non Fiction", "Must Read Titles"];
 
     this.allHistory = [
@@ -108,8 +25,23 @@ Model.prototype.init = function () {
     ];
 }
 
-Model.prototype.getLibrary = function () {
-    return this.library;
+Model.prototype.setLibrary = function (lib) {
+    this.library = lib;
+}
+
+Model.prototype.getLibrary = function() {
+    var that = this;
+    
+    fetch('getLibrary', {
+        method: 'GET'
+    })
+    .then(function (res) {
+        return res.json();
+    })
+    .then(function (obj) {
+        that.setLibrary(obj.library);
+        that.onGetLibrary.notify(that.library);
+    });
 }
 
 Model.prototype.getAllTags = function () {
