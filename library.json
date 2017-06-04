@@ -4,7 +4,7 @@
         "title": "Jewels of Nizam adfgasddfgasdfgasdfg",
         "author": "Geeta Devi",
         "image": "library_03.png",
-        "rating": 5,
+        "rating": 3,
         "tags": [
             "Best of List",
             "Classic Novels"
@@ -102,6 +102,13 @@
         "id": 13,
         "title": "serf",
         "author": "SDF",
+        "image": "",
+        "tags": []
+    },
+    {
+        "id": 14,
+        "title": "sdf",
+        "author": "sdf",
         "image": "",
         "tags": []
     }

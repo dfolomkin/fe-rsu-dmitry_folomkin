@@ -3,6 +3,7 @@ function Model() {
     this.HISTORY_BLOCK_LENGTH = 10;
 
     this.library = [];
+    this.book;
     this.onGetLibrary = new EventEmitter();
     this.onSearchInput = new EventEmitter();
     this.onRatingFilter = new EventEmitter();
@@ -80,10 +81,25 @@ Model.prototype.getBookById = function (int) {
 }
 
 Model.prototype.setRatingById = function (id, rating) {
-    var book = this.getBookById(id);
-    if (book) {
-        book.rating = rating;
-        this.onRatingSet.notify(book);
+    var that = this;
+    
+    this.book = this.getBookById(id);
+
+    if (this.book) {
+        this.book.rating = rating;
+
+        fetch("rateBook", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(this.library, "", 4)
+        })
+        .then(function (res) {
+            if (res.status == 200) {
+                that.onRatingSet.notify(that.book);
+            }
+        });
     }
 }
 
@@ -117,10 +133,10 @@ Model.prototype.getId = function () {
 }
 
 Model.prototype.addBook = function (book) {
+    var that = this;
+
     this.library.push(book);
 
-    var that = this;
-    
     fetch("addBook", {
         method: "POST",
         headers: {
@@ -129,8 +145,9 @@ Model.prototype.addBook = function (book) {
         body: JSON.stringify(this.library, "", 4)
     })
     .then(function (res) {
-        if (res.json()) {}
-        that.onBookAdd.notify(that.library);
+        if (res.status == 200) {
+            that.onBookAdd.notify(that.library);
+        }        
     });
 }
 

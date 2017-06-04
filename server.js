@@ -21,18 +21,15 @@ server = http.createServer(function (req, res) {
     }
 
     if (filename === "/addBook") {
-        onAddBook(req, res);
+        onUpdateLibrary(req, res);
         return;
     }
 
-    /*
     if (filename === "/rateBook") {
-        onRateBook(res);
+        onUpdateLibrary(req, res);
         return;
     }
 
-    
-    */
     var ext = path.extname(filename);
     
     var validExtensions = {
@@ -44,11 +41,11 @@ server = http.createServer(function (req, res) {
         ".gif": "image/gif",
         ".png": "image/png",
         ".svg": "image/svg+xml",
-        ".eot": "font/eot",        
-        ".ttf": "font/ttf",
-        ".otf": "font/otf",
-        ".woff": "font/woff",
-        ".woff2": "font/woff2"
+        ".otf": "font/opentype",
+        ".ttf": "font/truetype",
+        ".eot": "application/vnd.ms-fontobject",       
+        ".woff": "application/font-woff",
+        ".woff2": "application/font-woff2"        
     };
 
     var localPath = __dirname;
@@ -114,7 +111,7 @@ function onGetLibrary(res) {
     });
 }
 
-function onAddBook(req, res) {
+function onUpdateLibrary(req, res) {
     var data = "";
     
     req.on("data", function(chunk) {
@@ -125,7 +122,7 @@ function onAddBook(req, res) {
         fs.writeFile(libraryPath, data, function(err) {
             if (!err) {
                 res.statusCode = 200;
-                res.end("OK");
+                res.end();
             } else {
                 //throw err;
             }            
