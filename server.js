@@ -96,10 +96,15 @@ function onGetLibrary(res) {
     fs.exists(libraryPath, function (exists) {
         if (exists) {
             fs.readFile(libraryPath, "utf8", function (err, content) {
-                if (err) throw err;
-                res.setHeader("Content-Type", "application/json");
-                res.statusCode = 200;
-                res.end(content);
+                if (!err) {
+                    res.setHeader("Content-Type", "application/json");
+                    res.statusCode = 200;
+                    res.end(content);
+                } else {
+                    //throw err;
+                    res.writeHead(500);
+                    res.end();
+                }                
             });
         } else {
             console.log("File not found: " + libraryFile);
@@ -118,9 +123,12 @@ function onAddBook(req, res) {
 
     req.on("end", function() {
         fs.writeFile(libraryPath, data, function(err) {
-            if (err) throw err;
-            res.statusCode = 200;
-            res.end("OK");
+            if (!err) {
+                res.statusCode = 200;
+                res.end("OK");
+            } else {
+                //throw err;
+            }            
         });
     });    
 }
