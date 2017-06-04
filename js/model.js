@@ -32,14 +32,14 @@ Model.prototype.setLibrary = function (lib) {
 Model.prototype.getLibrary = function() {
     var that = this;
     
-    fetch('getLibrary', {
-        method: 'GET'
+    fetch("getLibrary", {
+        method: "GET"
     })
     .then(function (res) {
         return res.json();
     })
     .then(function (obj) {
-        that.setLibrary(obj.library);
+        that.setLibrary(obj);
         that.onGetLibrary.notify(that.library);
     });
 }
@@ -119,7 +119,19 @@ Model.prototype.getId = function () {
 Model.prototype.addBook = function (book) {
     this.library.push(book);
 
-    this.onBookAdd.notify(this.library);
+    var that = this;
+    
+    fetch("addBook", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify(this.library, "", 4)
+    })
+    .then(function (res) {
+        if (res.json()) {}
+        that.onBookAdd.notify(that.library);
+    });
 }
 
 Model.prototype.addHistory = function (message, time) {

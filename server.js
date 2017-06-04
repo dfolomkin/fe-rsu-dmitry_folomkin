@@ -5,29 +5,33 @@ var fs = require("fs");
 var PORT = 8080;
 var checkMimeType = true;
 
-var localPath = __dirname;
-var libFilename = "/library.json";
+var libraryFile = "/library.json";
+var libraryPath = __dirname + libraryFile;
 
 server = http.createServer(function (req, res) {
     var now = new Date();
     var filename = req.url || "index.html";
+    var reqBody = req
     
-    filename = filename === '/' ? "/index.html" : filename;  
+    filename = filename === "/" ? "/index.html" : filename;  
 
     if (filename === "/getLibrary") {
         onGetLibrary(res);
         return;
     }
+
+    if (filename === "/addBook") {
+        onAddBook(req, res);
+        return;
+    }
+
     /*
-    if (filename === '/rateBook') {
+    if (filename === "/rateBook") {
         onRateBook(res);
         return;
     }
 
-    if (filename === '/addBook') {
-        onAddBook(res);
-        return;
-    }
+    
     */
     var ext = path.extname(filename);
     
@@ -73,14 +77,14 @@ server = http.createServer(function (req, res) {
 }).listen(PORT);
 
 function getFile(localPath, res, mimeType) {
-    fs.readFile(localPath, function (err, contents) {
+    fs.readFile(localPath, function (err, content) {
         if (!err) {
-            res.setHeader("Content-Length", contents.length);
+            res.setHeader("Content-Length", content.length);
             if (mimeType != undefined) {
                 res.setHeader("Content-Type", mimeType);
             }
             res.statusCode = 200;
-            res.end(contents);
+            res.end(content);
         } else {
             res.writeHead(500);
             res.end();
@@ -89,25 +93,36 @@ function getFile(localPath, res, mimeType) {
 }
 
 function onGetLibrary(res) {
-    localPath += libFilename;
-    fs.exists(localPath, function (exists) {
+    fs.exists(libraryPath, function (exists) {
         if (exists) {
-            fs.readFile(localPath, 'utf8', function (err, data) {
+            fs.readFile(libraryPath, "utf8", function (err, content) {
                 if (err) throw err;
                 res.setHeader("Content-Type", "application/json");
                 res.statusCode = 200;
-                res.end(data);
+                res.end(content);
             });
         } else {
-            console.log("File not found: " + localPath);
+            console.log("File not found: " + libraryFile);
             res.writeHead(404);
             res.end();
         }
     });
 }
 
-// fs.writeFile(__dirname + lib2Filename, JSON.stringify(lib2, "", 4), function(err) {
-//         if (err) throw err;
-//     });
+function onAddBook(req, res) {
+    var data = "";
+    
+    req.on("data", function(chunk) {
+        data += chunk.toString();
+    });
+
+    req.on("end", function() {
+        fs.writeFile(libraryPath, data, function(err) {
+            if (err) throw err;
+            res.statusCode = 200;
+            res.end("OK");
+        });
+    });    
+}
 
 console.log("Starting web server at localhost:" + PORT);
