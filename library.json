@@ -1,10 +1,10 @@
 [
     {
         "id": 1,
-        "title": "Jewels of Nizam adfgasddfgasdfgasdfg",
+        "title": "Jewels of Nizam",
         "author": "Geeta Devi",
         "image": "library_03.png",
-        "rating": 3,
+        "rating": 5,
         "tags": [
             "Best of List",
             "Classic Novels"
@@ -89,27 +89,6 @@
         "author": "Matthew Biggs",
         "image": "library_24.png",
         "rating": 3,
-        "tags": []
-    },
-    {
-        "id": 12,
-        "title": "adfg",
-        "author": "adfg",
-        "image": "",
-        "tags": []
-    },
-    {
-        "id": 13,
-        "title": "serf",
-        "author": "SDF",
-        "image": "",
-        "tags": []
-    },
-    {
-        "id": 14,
-        "title": "sdf",
-        "author": "sdf",
-        "image": "",
         "tags": []
     }
 ]

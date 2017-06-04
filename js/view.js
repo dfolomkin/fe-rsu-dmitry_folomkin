@@ -561,9 +561,23 @@ View.prototype.updateHistoryBlock = function (message, time) {
     if (this.historyBlockElement.children.length > this.model.HISTORY_BLOCK_LENGTH) {
         this.historyBlockElement.removeChild(this.historyBlockElement.lastElementChild);
     }
-
+    
+    item.style.transition = ".5s ease-out";
     item.style.visibility = "visible";
-    item.style.maxHeight = "500px";
+    item.style.maxHeight = "50px";
+
+    var that = this;
+    var itemNo = this.historyBlockElement.children.length;
+    item.setAttribute("id", "histItem_" + itemNo);
+
+    setTimeout(function() {        
+        document.getElementById("histItem_" + itemNo).style.maxHeight = "0";
+        document.getElementById("histItem_" + itemNo).style.visibility = "hidden";
+    }, 3000);
+
+    setTimeout(function() {
+        that.historyBlockElement.removeChild(document.getElementById("histItem_" + itemNo))
+    }, 3500);
 }
 
 View.prototype.showAllHistory = function () {
