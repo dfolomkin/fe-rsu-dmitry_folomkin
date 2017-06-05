@@ -31,18 +31,34 @@ Model.prototype.setLibrary = function (lib) {
 }
 
 Model.prototype.getLibrary = function() {
-    var that = this;
+    var that = this;    
+    var xhr = new XMLHttpRequest();
     
-    fetch("getLibrary", {
-        method: "GET"
-    })
-    .then(function (res) {
-        return res.json();
-    })
-    .then(function (obj) {
-        that.setLibrary(obj);
-        that.onGetLibrary.notify(that.library);
-    });
+    xhr.open("GET", "getLibrary", true);
+    xhr.send();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState != 4) return;
+
+        if (xhr.status = 200) {
+            var obj = JSON.parse(xhr.responseText);
+            that.setLibrary(obj);
+            that.onGetLibrary.notify(that.library);
+        } else {
+            //alert(xhr.status + ': ' + xhr.statusText);
+        }
+    }
+
+    // fetch("getLibrary", {
+    //     method: "GET"
+    // })
+    // .then(function (res) {
+    //     return res.json();
+    // })
+    // .then(function (obj) {
+    //     that.setLibrary(obj);
+    //     that.onGetLibrary.notify(that.library);
+    // });
 }
 
 Model.prototype.getAllTags = function () {
